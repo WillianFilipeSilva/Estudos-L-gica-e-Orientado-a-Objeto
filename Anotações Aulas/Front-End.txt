@@ -1,0 +1,873 @@
+REDES
+fabrica de conexões: cria conexões, caso eu queira uma conexão, eu peço para ela, e ela me da.
+internet é uma rede de dispositivos interconectados, temos em uma ponta, dispositivo A, quem esta querendo acessar alguma informação, e a requisição do que essa ponta quer vai até a outra, dispositivo B, através do protocolo de comunicação de dados.
+
+Protocolo de comunicação de dados: É o conjunto de regras que dois dispositivos utilizam para fazer essa comunicação, temos um conjunto pré-definido.
+
+primeira coisa que o outro dispositivo testa é se ele entendeu a informação, então o A vai esperar a resposta do B, e quando receber a resposta, vai enviar novamente, até terminar a o protocolo.
+
+modelo iso e modelo osi.
+
+para fazer as conexões teremos um conjunto de camadas, e em cada camada teremos um conjunto de protocolos, vamos de protocolos de alto nível até as camadas de baixo nível que mexem nos bits da rede, teremos camada de, transporte, internet, e camada de enlasse, além de ter um conjunto de protocolos ela pegara a informação que eu quero, e o nome da informação mudara de camada para camada, como se uma envelopasse a outra até chegar na camada de rede, e no outro lado conforma a informação vai passando camadas e cada envelope vai ficando em cada camada até chegar na ultima camada. tendo quem enviou, quando enviou, qual o destinatário...
+
+
+HTML
+Protocolo http e https: Hyper Text Transfer Protocol Secure, a parte que usa o https para a transferência de informações é chamada de WEB.
+
+tenho uma requisição de uma pagina web por um cliente, quem recebe ela é o servidor, entendendo oque ele quer, e devolve a resposta.
+ambas tem o cabeçalho e o corpo, no cabeçalho temos metadados(informações sobre a requisição ou resposta), e no corpo, oque estou pedindo, ex: a pagina que estou pedindo(html, css, java script, imagens).
+MineType define qual o tipo do arquivo.
+
+Toda pagina web tem 3 partes principais, HTML, CSS e JavaScript.
+
+HTML(Hyper Text Markup Language): Dita qual vai ser a estrutura da pagina web, e oque existe na pagina.
+
+CSS(Cascade Style Sheets): Dita como vai ser exibido o que existe na pagina.
+
+JavaScript: Da a funcionalidade para a pagina, sendo uma linguagem de programação, que permite manipular os elementos da pagina após o navegador carregar ela.
+
+Hyper texto é um texto que se comunica com outro texto.
+
+TAG: diz oque é aquele elemento, representando alguma coisa, por exemplo um botão.
+
+!DOCTYPE - dita o tipo do arquivo/versão.
+
+toda a pagina estará dentro de um <html></html> exceto o doctype, sendo composta por duas partes:
+head - define elementos que sao invisíveis(metadados, idioma...).
+body - tudo que é visível na pagina.
+
+um arquivo html é um conjunto de elementos, cada elemento é composto por 3 partes, abre tag, conteúdo do elemento, e o fecha tag.
+esses elementos podem ser simples tendo conteúdo e mostrando na tela, ou alinhados, tendo um elemento dentro de outro elemento.
+elementos podem ter atributos que são pares chave valor(nome, valor), aonde cada atributo é utilizado para trazer informações extras sobre aquele elemento, atributo é diferente de conteúdo, ele vai dentro do abre tag.
+elementos podem ser semânticos(significado bem definido e único) ou nao semânticos(nao tem significado definido), div e span sao conteiners(Guardam elementos), porem o span, sao elementos para uma linha só, sem quebra de linha.
+alguns elementos semânticos sao só para dividir a pagina em espaços, como titulo, seções, rodapé,
+
+
+padrão da web é separar em 12 colunas, tirando 1 de cada lado para margem, 
+
+<header></header>
+<nav>
+ <main>
+  <section>
+   <article></article> - seria mais ou menos uma Postagem(titulo, imagem, paragrafo, texto).
+   <aside></aside>
+  </section>
+  <aside></aside>
+ </main>
+</nav>
+<footer></footer> 
+
+
+<html> é a raiz do documento
+<body> é a parte visível do documento
+<h1> até <h6> temos os cabeçalhos do mais para o menos importante.
+<p> serve para parágrafos.
+<hr> nao usar, serve para criar uma linha, melhor fazer com CSS.
+<br> nao usar, define quebra de linha.
+<pre> define um texto pré-formatado, não é muito utilizado.
+
+<ul> lista nao ordenada
+<ol> lista ordenada
+<li> item da lista
+
+<dl> listra descritiva 
+<dt> o elemento da lista
+<dd> a descrição do elemento
+
+type="I" define o tipo do marcador da lista
+start="50" define aonde o marcador lista iniciara
+
+<a href="url"> tag de ancora, para ir para outra pagina.
+
+caminho absoluto: dês da raiz do sistema de arquivos até chegar no arquivo "c:/users/Zezinho/arquivo/pagina.html"
+
+caminho relativo: é de onde estou até aonde o arquivo está, por exemplo, se estou na mesma pasta do arquivo, basta colocar o nome do outro html "../" volta um arquivo e "./" volta para a raiz.
+
+target - define aonde sera aberto o link que estou clicando.
+_self abre o documento na mesma janela/ aba ao qual cliquei.
+_blank abre em outra janela.
+_parent abre documento no pai dele, quando temos um elemento dentro do outro.
+_top abre no corpo inteiro da janela.
+
+
+<table> - tabela.
+<tr> - linha da tabela;
+<th> - cabeçalho da tabela, tendo apenas um.
+<td> - table data, o conteúdo de cada coluna da tabela, na linha.
+
+colspan = "" - quantidade de coluna que o elemento ocupará.
+rowspan = "" - quantidade de linhas que o elemento ocupará.
+<img src="" alt=""> - para adicionar imagens no html, o alt é para o que ficara no lugar caso não tenha imagem.
+
+<link rel="oque será aquilo" href="caminho"> - serve para linkar algo, por exemplo um link. 
+
+elemento de bloco forma um bloco na nossa tela, ocupando a linha inteira, e dando uma quebra de linha.
+elemento de linha sao elementos que ocupam parte de uma linha, tendo um após o outro, ocuparão somente o espaço dele.
+
+span é um elemento de linha.
+<div> - é um contêiner, elemento de bloco.
+
+accordion - é aquela lista suspensa.
+
+id - teremos um nome único para aquele elemento.
+
+para fazer algo aparecer ou sumir temos duas opções, ou o elemento já esta na tela, ou ele nao existe e é criado quando solicitado.
+
+class - para agrupar e manipular vários elementos diferentes, porem com o mesmo padrão.
+
+<form> - é um elemento para coletar a informações do usuario, ele nao guarda informações, ele guarda os elementos que armazenarão as informações
+
+<input> - guardara um valor para enviar para o banco, utilizando o atributo type, que por padrão é text, nao fechamos a tag do input.
+
+<input type="text"> - para entrar uma única linha.
+<input type="password"> - para senha, o usuário nao poderá ver oque esta escrito.
+<input type="submit"> - para enviar as informações do form.
+<input type="reset" value="Limpar"> - limpa os valores.
+
+<label> - a parte visível da barra de input, sempre vincularemos a label com o input definindo o id do input, usando o id no for da label.
+
+<form>
+<label for="fname">First name:</label>
+<input type="text" id="fname" name="fname" value="">
+<label for="lname">Last name:</label>
+<input type="text" id="lname" name="lname" value="">
+</form>
+
+name - quando eu submeter o formulário, o nome do elemento que vou usar para extrair aquele valor do formulário.
+
+na requisição teremos uma resposta com um conteúdo e códigos http, tendo ali para onde vai e oque quero fazer com aquela requisição, sendo os verbos mais importante get, put, post, delete, patch, read, connect, options.
+
+get, o servidor sabe que deve devolver algo.
+delete - o servidor sabe que terá que remover algum recurso.
+post - é utilizado, quando quero salvar algo no servidor.
+path - teremos o objeto no banco, e passo apenas uma informação para ser alterada naquele objeto, então só sera alterado aquela informação que enviei.
+put - buscara um recurso e alterará ele, porem se mandar varias vezes a mesma, ele só mudara a primeira, pois ele é um método idepondente.
+
+idempodencia - executaremos uma ação, e ela terá ou nao um efeito.
+
+códigos http:
+100 - questões de redirecionamento de requisição
+200 - status que deu certo a requisição.
+300 - 
+400 - é erro de requisição, sendo o problema no Front-End.
+500 - é erro de servidor.
+
+teremos um formulário, e dentro submeteremos o formulário, mandando a informação toda pro back-end, com o código do que quero fazer com ela, utilizando o botão de submit, ou temos o <input type="submit" value="texto do botão">
+
+<form action="caminho final"> - guarda para onde estarei submetendo o formulário, ou seja quem que vai tratar a requisição http que estou fazendo.
+
+localhost:8080/AvisaAi/cadastrar-usuario
+localhost:8080/AvisaAi/login
+localhost:8080/AvisaAi/alterar-senha - aonde terá a função para fazer cada coisa
+localhost:8080/AvisaAi/perfil?nome=guilherme&snome=silva - para mostrar o perfil do usuario Guilherme Silva
+
+method="get" - qual sera o método http, que estarei submetendo aquela requisição
+nunca usar o get para buscar informações sensíveis, também temos o máximo de 2048 caracteres, 
+
+BOA MANEIRA:
+method="post" - quando preciso passar informações sigilosas, pois o valor é mandado no meio da requisição.
+
+autocomplete - autocompleta com um valor que já foi preenchido antes.
+e devemos desativar, pois o valor padrão é "on"
+
+flexbox - usado no Styles, para alinhas div.
+
+novalidade - ele vai validar se aquele input é minimamente oque você pediu, ele vai dentro do <action>.
+
+
+select - funciona com drop, down, ou seja uma lista que quando selecionamos ela "desce" do além.
+exemplo:
+
+<form action="">
+<label for="cars">Choose a car:</label>
+<select id="cars" name="cars">
+ <option disabled>Selecione</option>
+ <option value="volvo">Volvo</option>
+ <option value="fiat" selected>Fiat</option>
+ <option value="audi">Audi</option>
+</select>
+</form>
+
+selected - faz com que algo já fique selecionado como padrão.
+disabled - desabilita a seleção de uma opção.
+
+size="1" - valor padrão é 1, mas serve para quantas opções pré-aparecerão na seleção. 
+
+multiple - significa para fazer upload de mais coisas por vez.
+
+<textarea> - é um campo de entrada de dados de varias linhas.
+
+<textarea name="message" rows ="10" cols="30">
+the cat was playing in the Garden.
+</textarea>
+
+rows = o tamanho em vezes relativo ao tamanho da fonte do texto, não usaremos.
+
+
+<form action="/action_page.php">
+<textarea name="message" rows="10" cols="30"></textarea>
+<br><br>
+<input type="submit">
+</form>
+
+
+button - define um botão, porem o atributo type, vai atribuir para que serve o botão.
+<button type="button" onclick="alert('hello world!')">Click Me!</button>
+sem atribuirmos eventos ao botão, ele nao servira para nada.
+
+eventos - sao acontecimentos perante aquele elemento.
+
+type submit - submete os valores do formulário.
+type reset - resetam os valores para o padrão do formulário.
+
+<fieldset> - coloca uma moldura nas bordas do formulário
+<legend> - legenda no superior do fieldset.
+
+<datalist> - sugere resultados de uma pesquisa, com, base no que foi digitado pelo usuario.
+
+<option> - valor sugerido no datalist.
+
+<output> - mostra o resultado de um calculo no formulário, melhor substituir por um spam.
+
+formulário de multi-etapa - transforma um cadastro ou preenchimento em etapas.
+
+
+input types:
+
+type="text" - entrada de valores em texto.
+
+type="password" - exatamente igual ao text, porem a informação nao sera visível, nunca usaremos com um atributo get, pois a senha do usuario aparecerá na URL.
+
+type="submit" - submete o formulário para quem for processar ele, escrito no action.
+
+type="reset" - reseta os valores para o valores padrões.
+
+type="radio" - é um conjunto de opções especificado pelo mesmo name, aonde posso selecionar apenas um valor, estaremos especificando varias opções para o usuário com vários radio buttons com o mesmo name e value diferentes, e ele poderá selecionar entre 0 e 1 opções.
+
+type="checkbox" - cada checkbox é uma opção distinta, podendo-se selecionar 0...* cada um com seu name.
+
+type="color" - adiciona seleção de cor em rgb, e sera submetido em hexadecimal.
+
+type="date" - adiciona seleção de data, e sera enviado o valor no mesmo padrão do banco de dados.
+
+type="datetime-local" - adiciona seleção de data e hora, e envia o valor em horário internacional por padrão sem fuso horário.
+
+type="email" - especifica um campo que representa um email, com distinção de semântica, e com validação básica de formato de email(algumacoisa@algumacoisa), precisamos validar e mudar a mensagem de erro com java script.
+
+type="image" - define uma imagem que vai estar no lugar do botão de submit, quando é clicado, é enviado para o back os valores do formulário, e os valores do x e do y de onde o usuário clicou na imagem.
+
+type="file" - terá uma caixinha que vai acessar o sistema de arquivos do computador, e o value guardara o endereço desse arquivo no disco.
+
+type="hidden" - campo que existe, porem invisível para o usuário, usaremos para criar cards por exemplo, onde quando selecionado, o valor do id daquele card será submetido.
+Usaremos para atualizar informações no banco com o DAO.
+
+type="month" - adiciona seleção de mês e ano, data é enviada no padrão do banco.
+
+type="number" - define uma entrada numérica.
+usaremos min="" e max="" quando quisermos limitar, e teremos o step="" para definir de quantos em quantos subirá a seleção.
+
+type="range" - define um slider, aonde teremos valores de tanto a tanto, podendo se usar o min, max e step.
+
+type="search" - define uma pesquisa, com diferença semântica do text.
+
+type="tel" - usaremos para dar entrada em telefones no pattern="[0-9]{2}9[0-9]{8}" estaremos definindo uma expressão regular, que é um gerador de palavras que pertence a uma linguagem, definirei quais caracteres podem existir e a quantidade "([0-9]){3}" 2 caracteres de 0 a 9 dentro de "()".
+
+type="time" - adiciona seleção de horário sem fuso horário, especificaremos o fuso na classe da linguagem.
+
+type="url" - define uma entrada de url, com validação básica(http://www.a.com).
+
+type="week" - adiciona seleção de qual a semana do ano "semana 38".
+
+ATRIBUTOS DO INPUT:
+
+value - guarda o valor do input.
+
+readonly - quando definido, fara um input de leitura, o usuário nao poderá alterar o valor.
+
+disabled - desabilita, ou seja nao pode ser manipulado.
+
+size - dita o tamanho da fonte atual daquele elemento.
+
+maxlength - dita quantos caracteres que a quele input vai armazenar no máximo.
+
+min e max - sao relativos ao valor que o input esta armazenando, sendo utilizado apenas em números e datas.
+
+multiple - faz a entrada aceitar vários valores.
+
+pattern - dita o corpo da entrada
+
+placeholder - é um tapa buraco, sendo um texto como conteúdo do input, porem mais desfocado, até que o usuário digite algo.
+
+required - aquele campo é obrigatório.
+
+step - especifica o intervalo de grandeza para o valor do input, tanto incremento quanto decremento.
+
+autofocos - quando a pagina é carregada, seleciona automaticamente algum elemento.
+
+height width - altura e largura. 
+
+<meta> - usada para informações sobre a propria pagina, usada para meta dados.
+
+charset="UTF-8" - conjunto de caracteres para rodar aquela pagina, combinando os binários com caracteres.
+
+name="" e content="" na tag meta - poderei criar a informação que eu quiser sobre a pagina, como por exemplo autor e nome.
+
+<meta http-equiv="refresh" content="30"> - muda o conteúdo de um elemento de tanto em tantos segundos.
+
+<meta name=viewport" content="width=device-width, initial=scale1.0"> - usado para design responsivo, fazendo com que a tela tenha o comprimento do dispositivo.
+
+<script> - usado para fazer scripts que vao estar rodando no navegador, geralmente usado para trabalhar com o java script, igual a tag <style>.
+
+entity - teremos duas formas de representar uma entidade:
+&nome_da_entidade
+&#codigo_dela.
+
+&nbsp; - teremos duas palavras ou partes de texto, que nao queremos que sejam quebrados no design, ou seja, nao sejam separadas.
+
+Arquitetura Cliente - Servidor
+
+Cliente:
+requisita um recurso.
+
+Servidor:
+recebe a requisição, e devolve uma resposta de acordo com a logica do sistema.
+
+Servlet - é uma classe, estará dentro de um servidor web.
+
+Tomcat - é um servidor web que no java server, é um servlet contêiner que hospeda um ou mais servlets, e gerencia toda a parte do circulo de vida da requisição.
+Tomcat é o programa que rodara nosso projeto, implementaremos uma classe para dar as respostas das requisições.
+
+primeira parte será um ip e a porta, ip sendo o endereço da rede, e a porta é o programa que vai estar recebendo oque chegar ali, ali estará especificado o aonde estamos hospedando o Toncat, e então especificaremos qual o projeto que eu quero.
+
+quando chega uma requisição pro Toncat, ele verificara para qual servlet é a requisição, e invocara dentro do servlet um conjunto de métodos, sendo:
+
+Doinit - quando o servlet é iniciado, ele invoca esse método, que fara tudo necessário para inicializar meu servidor.
+
+cada requisição que chega terá uma sequencia de etapas, quando chega será invocado um método service:
+
+doPost - invocado quando chega um post.
+doGet - quando chega uma requisição get.
+doDelet - quando chega uma requisição delete.
+
+processo:
+
+requisitarei um get para o servidor, o Tomcat recebe a requisição, vê para qual servlet é, encaminha e chama o método service daquele servlet, o servlet vê qual é o método de requisição, e então invoca o método, e da a resposta.
+
+servlet ficara no controle.
+
+endereço ip e porta padrão do toncat: localhost8080/AvisaAi(servlet)/logar(caminho dentro do projeto)
+
+@WebServlet("/") - anotação que faz com que cada requisição caia nessa classe, caso não seja usado, precisarei criar um lista dos caminhos que ele pode processar.
+para usar a tag webservlet("/") - usaremos um case para selecionar a função do servlet.
+
+a classe servlet extenderá de HttpServlet, que estará sobrescrevendo métodos.
+
+a cada requisição resposta, eu mando oque preciso mandar na requisição e a resposta.
+
+sessão - e é uma área de transferência entre 2 dispositivos, que guarda um histórico do que foi ocorrendo dentro dela.
+
+cookie - é uma sessão que fica salva em disco, serve para manter uma sessão.
+
+JSP - Jacarta server pages, similar ao html, porem servindo como um template, tudo que é imutável, fica armazenado como html, e oque é mutável 
+
+scriplet - teremos uma tag especifica aonde dentro da tag teremos código java puro, ficara dentro do jsp.
+
+Teremos linguagens como JSTL, que serão uma tag no html que utilizara EL para fazer uma tradução para java.
+
+o Tomcat pega o JSP e converte num servlet, o servlet imprime a tela e então o toncat devolve a tela para quem pediu, com a informação que veio do back-end.
+
+sendRedirect - cria uma nova requisição.
+
+forward - reencaminha a requisição.
+
+webapp - dentro dessa pasta estará toda a visão, dentro do resources da webapp teremos o html e css, no redirect colocaremos o caminho das paginas sempre a partir do webapp.
+
+elemento é o menor conjunto de html possível, que dará uma funcionalidade para algo.
+
+menu.jsp - exemplo de uma lista dropdown.
+
+sempre que eu tiver um link, preciso mandar um link pro meu server naquela rota.
+
+<%= %> - tag scriplet aonde coloco o código java.
+exemplo:
+<a href="<%=request.getContextPath()%>/novo">Novo Con
+jstl - conjunto te tags que são utilizadas para minimizar o meu código java, por exemplo para inteirar sobre uma lista, para exibir os resultados de uma pesquisa.
+não conseguimos acessar requisição, ou comparação se um valor é igual a tanto, então tenho o EL - aonde consigo colocar uma camada amais e em boa parte dos códigos consigo evitar o uso de código java nativo no Front-Endtato</a>
+
+<%@ - diretivas que dizem com oque será feito.
+exemplo:
+<%@ page language="java" contentType="text/html; charset="UTF-8" pageEncoding= 
+<%@ taglib url="http//java.sun.com/jsp/jstl/core" prefix="c"%> - tag do jstl.
+
+java sandard tag lib - conjunto de tags que posso usar no jsp, tendo as principais tags do "c" são para definir conceitos da pagina.
+
+<style><%@include file="/resources/cs/estilos.css"%></style>
+<script><%@include file="/resources/js/filtros.js"%></script>
+
+usaremos o include file="componente.jsp" - para aplicar os componentes, como cabeçalho e barra lateral do nosso sistema.
+
+
+onkeyu -sempre que a pessoa soltar a tecla digitada, vai disparar uma função.
+exemplo:
+<input type="search" id="consulta-email" onkeyup="filtrarTabelaEmail()" placeholder="Procure por e-mails..."</input>
+<table id="tabela-contato">
+	<thead>
+		<tr>
+			<th>
+
+			</th>
+		</tr>
+	<thead>
+</table>
+
+<tbody>
+	<c:forEach var="contato" item="${contatos}">
+		<tr>
+			<td><c:out value="${contato.email}"/></td>
+			<td><c:out value="${contato.telefone}"/></td>
+			<td>
+				<a href="editar?id=<c:out value='${contato.id}'>">Editar</a>"
+				<a href="deletar?id+<c:out value='${contato.id}'>">Deletar</a>"
+			</td>
+		</tr>
+	</c:forEach>
+</tbody>
+
+
+el = envaluation language - linguagem que tem um conjunto ferramental que nos auxiliar a fazer comparaçoes, sempre representado como $.
+<c:out value=""/> - faz saida de dados.
+quando usamos ele invoca o get dos dados no formato padrao "getEmail()"
+
+<c:if test="${contato != null}">
+	<form action="atualizar" method="post">
+</c:if>
+<c:if test=""> - testa informaçoes, na requisição.
+
+<finalName>AvisaAi</final\name> - é o nome que sera usado no url do navegador
+
+CSS
+
+temos 2 regras no css
+aonde teremos o seletor
+
+hi {
+	abre fecha tag
+	propriedade: valor;
+	color: blue;
+}
+
+cada declaração é sempre composta de pares, propriedade : valor;
+a propriedade dita oque vamos estar alterando no elemento.
+
+Seletores:
+ditam qual estrategira estarei aplicando para selecionar um ou mais elementos html.
+são dividos em 5 categorias, que agrupam diversos que trabalham mais ou menos da mesma forma:
+
+Simples: selecionam elementos.
+Combinadores: eles pegam o elemento mediante o relacionamento entre eles.
+Pseudo-classe: vai selecionar um elemento mediante o estado dele, alguma ação que esta sendo realizada naquele elemento, como por exemplo estar selecionado ou mouse por cima.
+Pseudo elemento: são falsas partes de um elemento, por exemplo eu consigo pegar a primeira letra de um paragrafo.
+Atributo: vou selecionar pelos seus atributos, por exemplo só as tags img com o atributo alt, se tiver é selecionado se não tiver não vai, e tambem consigo pegar valores dos atributos do meu html, por exemplço tag alt e valor do atributo começe com flor.
+
+
+Seletor Simples:
+seletor de elemento, seleciona todos os elementos da pagina que coincidem com o seletor que eu quero, sempre comçea e sera exatamanete o valor da tag HTMl.
+
+Seletor de id(só podemos ter um elemento com um id por página): usa-se o #nomeID{} para manipular.
+
+Seletor de classe: seleciona um conjunto de elementos, fazendo com que todos tenham a mesma formatação, usa-se o .classe{}, e podemos dar mais de uma classe a um elemento.
+
+Seletor universal: * {} seleciona tudo no arquivo. usaremos para limpar formatação do body: * {margin:0; padding:0; box-sizing: border-box;}
+
+Seletor de grupo: pega um grupo de elementos e ou seletores e aplica aquelas declarações: h1, h2, p {}
+
+Seletor de elemento.classe seleciona todos os elementos que tem aquela classe. p.class{}
+
+Combinadores são um conjunto de seletores aonde os elementos vao ser selecionados mediante suas categorias, um elementox esta dentro de um elemento1, o elementox é filho do elemento1, e temos ancestral seguindo o mesmo, porem com mais distancia
+
+Seletor de descendente, seleciona todos os elementos que são descendentes de um elemento especifico, utiliza-se o espaço " ", exemplo: div p {}
+
+Seletor de filho ">" seleciona todos os elementos que sejam filhos do primeiro elemento.
+
+Seletor de proximo irmão "+" tendo 2 elementos no mesmo nivel, eu irei selecionar o elementox que esteja após o elemento y. exemplo div + p {} - todos os p apos uma div.
+
+seletor de irmão subsequente "~" seleciona todos os irmãos apartir do que marquei, exemplo: div ~ p {}
+
+Pseudo classes - são estados que um elemento html pode assumir, cada elemento pode assumir um conjunto de estados, sendo alguns compratilhados e outros não.
+
+Hover - O estado mais famoso, compartilhado por quase todos os elementos de HTML, "onhouver" quando o mouse estiver por cima, podemos usar a pseudo classe para formatar ele.
+
+seletor:pseudo-classe {
+	propriedade: valor
+}
+
+anchor "a" - ancora de link, exemplo:
+a:link{} - quando aidna não foi visitado
+a:visited{} - ja foi visitado
+a:hover{} - mouse em cima
+a:active{} - enquanto clicando sem soltar
+
+first-child - seleciona somente os elementos em estado de serem os primeiros filhos de algo.
+
+p i:first-child {} - todos os i que sejam primeiro filhos de um p.
+
+podemos usar de outras maneiras
+
+p:firt-clid i {} - todos os i que estão dentro de um p que seja primeiro filho
+
+last-child - seleciona somente os elementos que são os ultimos filhos.
+
+lang="" consigo definir os elementos de um idioma.
+
+q: lang(no) { quotes: "~" "~"; } - estara selecionando todas as citações que estejam nessa lingua, e o q é utilizado para citações.
+
+Pseudo-elementos
+é levemente similar ao seletor de pseudo-classe, porem em pseudo-classe estamos falando de estado elemento, e no pseudo-elemento, seria uma parte especifica do elemento, tendo alguns pseudo elementos mais genericos e alguns mais especificos.
+no caso do p, temos o seletor de primeira linha, e ou o de primeira letra por exemplo.
+
+p ::first-line {} -seleciona a primeira linha de um testo, e estiliza ela.
+
+seletor:: pseudo-elemento {} - exemplo de como é a estrutura.
+
+::first-letter - pegar primeira letra.
+
+::before - para antes dos elementos.
+::after - para algo depois dos elementos.
+::marker - serve para pegar os marcadores das listas.
+::selection - a parte do elemento que esta selecionada pelo usuário.
+::backdrop - seleciona a parte, atras do elemento.
+::file-selector-button - para o botão de seleção de arquivos.
+
+Seletor de atributos - servem para selecionar o elemento mediante seus atributos.
+
+[atributo] - o elemento que tiver esse atributo sera selecionado, antes do [] pode vir qualquer seletor que ja vimos.
+
+a[target] {background-color: yellow;} - ancoras com um atributo link, recebem o fundo amarelo.
+
+elemento[atributo="valor"] - usado para selecionar elementos que tenham tal atributo com tal valor.
+
+[atributo~="valor"] - seleciona elementos com o atributo contendo esse valor, porem que esse valor faça parte do todo, porem com o valor completo e separado.
+
+[atributo|="value"] - similar ao primeiro porem, ainda será uma busca exata, podendo ser uma palavra composta, tendo o valor ou "valor-".
+
+[atributo^="valor"] - seleciona os elementos cujo os valores comecem com o valor, podendo ser "palavra-valor" ou "palavraValor"
+
+[atributo$="valor"] - seleciona os elementos cujo valores do atributo termina com o valor.
+
+[atributo*="valor"] - seleciona os elementos aonde o valor do atributo tenha o valor em algum lugar, podendo ser no meio de uma palavra.
+
+Declaração é um par propriedade valor.
+
+Cores no css:
+
+temos diversas formas para se trabalhar com cores, o mais simples é o nome da cor, que armazena o valor de alguma propriedade, porem não deve ser utilizado, o melhor é utilizar codigos RGB(vermelho,verde,azul).
+rgb(255, 0, 0)
+
+teremos uma função com 3 parametros, que cada um representara uma cor, e cada parametro tem um byte, 8 bits, temos qualquer valor entre 0 e 255 para cada um.
+
+rgb(0, 0, 0) - preto.
+rgb(255, 255, 255) - branco.
+
+tons de cinza serão exatas quantidades das mesmas cores.
+
+alem do rgb, teremos o rgba(red, green, blue, alpha), sendo o alpha a opacidade, indo de 0.0 a 1.0.
+
+temos o hexadecimal: sendo #RRGGBB, utilizaremos base 16, sendo do 0 ao 9 e letras: abcdef.
+
+#000000 - preto.
+#ffffff - branco.
+
+caso os valores se repitam podemos simplificar #fff = #ffffff.
+
+HSL(hue, saturation, lightness), grau no circulo cromatico, saturação, e iluminação, saturação é o ton de cinza, quanto menos, mais cinza, e a iluminação 50% é o normal, aumentamos ou diminuimos incidencia de preto.
+hsl(0-360, 0-100%, 0-100%).
+0 - vermelho, 120 verde, 180 - azul, 240 amarelo, 360- vermelho.
+0 - cinza, 100 - cor normal.
+0 - preto, 100% branco.
+
+hsla(grau cromatico, saturação, luz, e opacidade)
+
+Propriedades as quais podemos aplicar as cores:
+
+background-color - cor do fundo do elemento.
+background-image - imagem do fundo do elemento.
+background-repeat - como sera repetido a imagem de fundo, padrão é no-repeat.
+background-attachment - para fixar uma imagem e nao rolar com o resto da pagina.
+background-position - para especificar a posição aonde a imagem vai ficar.
+background - utilizado como atalho, aonde posso colocar todos os valores que quero colococar numa linha só, des de que seja mantido a ordem, exemplo:
+background: #ffffff url("img.png") no-repeat righ-top;
+deve sempre ficar na ordem:
+cor -> imagem -> repeat -> attachment -> position.
+
+Tamanho de elementos.
+
+border - é tudo que esta estipulando o limite entre um elemento e o proximo elemento.
+border-width - largura da borda.
+borde-style - dita qual o estilo da borda que eu tenho, sendo none como padrão, e é obrigatório.
+border-color - cor da borda.
+border sequencia dos valores: cima, direita, baixo, esquerda.
+							 top,  right,   bottom, left.
+
+border-radius - raio da borda, para deixar mais arredondada.
+
+margin - margem de um elemento, segue praticamente os mesmos principios do border.
+auto - o navegador calcula a margem.
+lenght - tamanho especificado.
+% - especifica uma margem em % do tamanho do conteudo.
+inherit - espefica que a margem pode ser inherited from parent.
+quando temos duas margens de 2 elementos se encontrando, ambas se juntam e fica o maior valor de margem.
+
+padding - é um espaço entre o conteudo de um elemento e a borda dele, usa a mesma ideia de cantos.
+
+height - altura.
+width - largura/comprimento.
+ditam o tamanho do conteudo do elemento.
+
+min-height - altura minima.
+max-height - altura minima.
+
+box-model - é um modelo que dita como eu calculo o tamanho de um elemento em html.
+cada elemento é tratado como uma caixa, e cada caixa é composta por conteudo, padding, borda ,margem, e seu tamanho é a soma de todos os valores de ambos lados.
+
+box-sizing - permite que incluamos o padding e a borda no valor do comprimento e da altura.
+
+width + padding + border = comprimento do elemento.
+height + padding + border = altura do elemento.
+
+box-sizing: border-box - inclui o padding na altura e na largura, para conseguirmos manipular melhor os tamanhos, sempre colocaremos no seletor universal do styles.
+
+unidades de medidas:
+Absolutas - são valores que nao mudam.
+cm - centimetros.
+mm - milimetros.
+in - polegadas.
+px = pixels - apesar de ser absoluto, é relativo a resolução da tela.
+
+Relativas - sao relativas a alguma coisa, para design responsivos.
+em - é relativo ao tamanho da fonte, sendo 1em = 1 vez o tamanho da fonte.
+rem - relativo ao tamanho da fonte do elemento raiz.
+vw - relativo a 1% da largura da tela visivel.
+vh - relativo a 1% da altura da tela visivel.
+vmin - relativo a 1% da tela, passando a dimensão minima.
+vmax- relativo a 1% da tela, passando a dimensão maxima.
+% - relativo ao elemento pai, por exemplo 50% de tamanho dentro de uma div de 100px é 50px.
+
+Textos CSS:
+color - utilizado para cor do texto.
+text-align - dita como texto estara alinhado no X, horizontal, podendo ser left, center, right, ou justify - que faz ocupar todo o espaço.
+directio - serve para mudar a direção de escrita do texto, podendo ser mudado de rtl(right to left) para ltr(left to right).
+vertical-align - serve para definir como o texto estada alinhado no eixo Y, vertical, podendo ser baseline(padrão na linha), text-top(texto em cima), text-bottom(texto embaixo), sub(texto abaixo do texto) e super(acima do texto).
+
+Decoração de texto:
+text-decoration-line - usado para adicionar uma linha de decoração no texto, podendo ser overline(em cima do texto), line-through(no meio do texto), underline(embaixo do texto), e pode-se conbinar valores.
+text-decoration-color - para especificar a cor.
+text-decoration-style - muda o estilo do texto, podendo ser solido(padrão), dashed(), wavy(ondas).
+text-decoration-thickness - para a grossura da decoração.
+text-decoration line(obrigatório) color style thickness.
+
+lista ordenada, com as listas(li) cada li com um link(a), ai eu pego o li a e tiro a linha(text-decoration: none; e mudo o display para ficar de lado), para fazer um menu horizontal.
+
+Transformação de texto:
+text-transform - para transformar o texto, podendo ser: uppercase(maiusculo), lowercase(minusculo), capitaliza(pega primeira letra e deixa em caixa alta).
+
+Espaçamento de texto:
+text-indent - identa o texto em um tamanho(colocando um espaço).
+letter-spacing - para especificar o espaço entre os caracteres em um texto.
+line-height - usado para especificar o espaço entre linhas, pode ser um calculo com base no tamanho da fonte do navegador, como um 0.7 por exemplo.
+word-spacing - usado para especificar o espaçamento das palavras.
+white-space - para especificar como o espaço em branco sera tratado nas linhas, podendo ser wrap(padrão), nowrap(para não quebrar a linha no espaço em branco quando não caiba na tela).
+text-shadow - coloca sombra no texto.
+
+font-family: Arial(obrigatório, fonte que eu quero), Helvetica(familia), sans-serif(uma fonte não serifada); funciona assim, se não tem a fonte, procura uma da familia, se não tem, pega uma fonte sem serifa.
+font-style - para estilizar o texto, podendo ser normal, italic, oblique.
+font-weight - peso da fonte, podendo ser normal e bold(negrito).
+font-size - especifica o tamanho da fonte.
+
+para importar fonte basta usar a diretiva no css, ou um link no html.
+
+atalho:
+font style variant weight size/line-height family.
+
+usa a tag <i class="icone que eu quero"></i> e a classe o link do icone do fontawesome.
+
+Layout - É a forma como serão distribuidos os elementos na tela.
+
+display, serve para especificar como o elemento sera exibido na tela, sendo uma div, um p, ou qualquer outro., todo elemento tem um valor ja padrão para essa propriedade.
+mais utilizados:
+flex - para trabalhar com flexbox.
+grid - para trabalhar com grid layout.
+inline - exibe o elemento como elemento de linha.
+none - seria o display sem valor, que serve para esconder algo, ele deixara de existir.
+
+podemos usar o toggle, para ficar alterando.
+
+visibility:hidden - deixa invisivel, porem continua ali e podendo ser acessado.
+
+position - especifica o tipo de posicionamento do elemento.
+static - o elemento vai estar aonde ele ja estaria normalmente.
+relative - o elemento sera posicionado relativo ao elemento pai, no caso levando em consideração do local aonde ele ja estaria normalmente.
+fixed - o elemento ficara fixo na tela.
+absolute - o elemento é relativo ao pai dele, então se o pai ser movido, o absoluto tambem sera movido.
+sticky - elemento é posicionado baseado no scroll, o elemento é relativo e quando chego em determinada posição ele fica fixo.
+
+z-index - define qual elemento sera visualizado na frente de qual, apartir do momento que ambos estejam no outro lugar, por padrão todos os elementos tem o z-index = 0;
+
+overflow - barra de rolagem, e sempre sera colocado no conteiner quando o conteudo é maior que ele.
+visible - faz com que o conteudo fique visivel, mesmo estando fora do pai.
+hidden - faz com que o conteudo fique invisivel, quando estiver para fora do pai.
+scroll - deixa o conteudo excedente invisivel e adiciona a barra de rolagem.
+auto - adicionar uma barra de rolagem somente quando necessario.
+
+overflow-x - para scroll horizontal.
+overflow-y - para scroll vertical.
+
+float - especifica como um elemento ira flutuar, até o lado especificado do pai dele, apartir de um momento que um elemento tenha o float, todos os seguitnes tambem terão.
+clear - usado para fazer com que o elemento pare de flutuar.
+
+display: inline-block - forma de exibir elementos que traz caracteristicas tanto de bloco quanto linha, poderemos alterar altura e largura e nao terei a quebra de linha após o elemento.
+
+layout unidimensional - quando usamos apenas uma dimensão, por exemplo uma linha um do lado do outro.
+layout bidimensional - quando usamos conteudo tanto para x quanto para y, sendo duas colunas ou linhas.
+
+usa-se grid, para layout e flexbox para alinhas elementos.
+
+flexbox - temos o flex container e o flex item, tudo que estiver dentro de um flex conteiner é um flex item.
+
+teremos uma div exibindo o resultado da busca, cada elemento da div sera um card(outra div), e ali dentro terá os elementos alinhados.
+
+para  termos um flex conteiner temos que declarar o display como flex, teremos as propriedades para alinhas o elemento dentro do conteiner:
+tudo sera colocado como linha ou coluna, mas o padrão é linha.
+flex-direction - para mudar de linha(row) para coluna(column), reverse inverte.
+flex-wrap - faz com que os elementos sejam colocados para baixo caso não caibam na tela.
+flex-flow - é um atalho so para flex-direction e flex-wrap, podendo ser colocado apenas os valores de ambos.
+
+justify-content - dita como os flex items estarao sendo alinhados no eixo x(horizontal).
+center - centraliza os elementos.
+flex-start - coloca todo o conteudo no inicio do conteiner, alinha a esquerda.
+flex-end -  coloca todo o conteudo no final do conteiner, alinha a direita.
+space-around - os espaçoes ao redor dos elementos serão os mesmos.
+space-between - divide os espaços entre os elementos são os mesmos, sem afetar os ao redores.
+space-evenly - deixa todos os espaços iguais.
+
+align-itens - alinha os items no eixo y, vertical, pode ser center(centro), flex-start(coloca tudo no inicio), flex-end(coloca tudo no final), strech(estica o elemento), baseline(alinha os items numa linha que corta o meio de todos os elementos).
+align-content - é usado para alinhar as linhas de items.
+
+order - especifica a ordem dos flex items.
+flex-grow - especifica quanto um flex item vai crescer amais que os outros.
+flex-shrink - especifica o quanto que vai diminuir, contrario do grow.
+flex-basic - tamanho inicial de cada item.
+flex - é um atalho para usar as propriedades: grow, shrink, basics.
+align-self - especifica como ele vai se alinhar em relação aos irmãos.
+
+grid - similar ao flex, porem alinha os elementos em grade, os grid items serão elementos de bloco.
+ou inline-grid -  os grid items serão elementos de linha.
+
+teremos as grid columns - sendo as linhas verticais.
+grid rows - que serão as linhas horizontais.
+columns e rows tem o gap - que é o espaço entre uma coluna e outra...
+gap - é o atalho para o espaçamento da linha e da coluna.
+
+grid lines, são as linhas de separação do grid, tanto vertical quanto horizontal, e atraves delas eu vou delimitar aonde começa e termina um elemento.
+
+grid-column-start - em qual line o elemento começa.
+grid-column-end - em qual line o elemento termina.
+
+grid-template-columns - é o atalho para definir o tamanho das colunas em porcentagem da tela.
+grid-template-rows - define o tamanho das linhas em porcentagem da tela.
+
+grid-column : 1/5 - determina em qual line ele começa e em qual termina.
+podemos usar o span - para determinar o quanto vai expandir, somando com a linha que ele começa: grid-column: 1/ span 3, começa na 1 e termina na 4.
+grid-area - acaba sendo um atalho para usar os dois ao mesmo tempo.
+
+fr - é uma unidade exclusiva do grid, usada para fracionar o tal disponivel, e cada fr aloca uma quantidade do espaço.
+
+variaveis do css, sáo propriedades customizaveis e aplicaveis atraves da função var().
+--nome: valor; - para criar uma propriedade, quando for global, colocaremos dentro do :root{}, podendo ser reescrevido dentro de algum seletor.
+
+posso forçar um valor usando o !important, mas não é uma boa pratica, apenas usado caso eu não tenha acesso ao css.
+
+media queries - são regras que serão utilizadas quando determinados eventos ocorrerem no front-end, aumentando e diminuindo a tela por exemplo, serve para fazer um layout responsivo ao tamanho de tela.
+screen - para computadores:
+orientation - orientaçao da visualizçao da tela.
+min-width - tamanho minimo a ser ultrapassado verticalmente.
+min-height - para o tamanho maximo.
+
+
+@media screen and (min-width: 480px) { - caso a tela seja maior que 480px, executara o seletor de cor.
+	body {
+		background-color: lightgreen;
+	}
+}
+
+JavaScript - linguagem fracamente tipada e dinamica, criada para codar em navegadores, mas hoje em dia esta sendo usado para programar o back com o node.js que é uma linguagem que usa o motor do navegador para rodar o javascript.
+
+variaveis:
+var - variavel sendo criada.
+let - variavel sendo visivel apenas aonde é usada.
+const - variavel Constante ou estatica, o valor nunca varia.
+
+== - compara valor.
+=== - compara valor e tipo.
+!= - valor diferente.
+!== valor ou tipo diferente.
+> - maior que.
+< - menor que.
+>= - maior ou igual.
+<= - menor ou igual.
+? - seria oque fazer, caso algo booleano seja verdadeiro ou falso:  let result = 1 > 2 ? "batata" : "Pão" - testa se 1 é maior que 2, se for verdadeiro é batata, ou falso sera pâo.
+
+typeof - retorna o tipo da variavel.
+instanceof - retorna verdadeiro se o objeto é uma instancia de uma classe ou tipo.
+
+tipos primitivos:
+String - texto.
+Number - todo tipo de inteiro ou até long ou float.
+Bigint - um inteiro muito grande, quase nunca usado.
+Undefined - é uma variavel sem valor, pois não é definido.
+Null - variavel nula.
+Symbol -
+Object -
+Nan - valor numerico irrepresentavel.
+
+funçoes - as funçoes do java script são de primeira classe, sendo como se fossem cidadoes de primeira classe, em javascript tudo é objeto, incluindo as funçoes.
+temos funçoes nomeadas e anonimas - são funçoes com seu nome, que sera usado para invocala, e a anonima, não tera um nome, então não conseguiremos invocala no futuro, apenas no momento da criação.
+
+função anonima:
+function (parametros) => {
+	return 1+1;
+}
+
+fetch(file) - faz uma requisição http, ele cria uma promessa e dependendo do que voltar da promessa, eu farei algo.
+.then(x => x.yext())
+.then(y => myDisplay(y));
+
+async function getText(file) {  -  função assincrona.
+	let x = await fetch(file);
+	let y = await x.text();
+	myDisplay(y);
+}
+
+
+eventos - são açoes que o html sofre e quando ocorrem, consigo capturar a ocorrencia e tratar de alguma forma.
+<elemento event='algum codigo ou função'>
+podemos usar em conjunto, por exemplo o "on"
+click - quando o usuario clica.
+load - quando a pagina carregar.
+focus - quando um elemento ganha o foco.
+blur - quando um elemento perde o foco.
+copy - quando um elemento é copiado.
+
+
+Exemplo de arvore do html:
+html:
+	head:
+		title: texto.
+	body:
+		a: texto.
+			href: link.
+		h1: texto.
+
+HTML DOM -é um estrutura de dados que representa em memoria o conteudo do meu html, serve para modificar um elemento em html.
+
+getElementById - vai no DOM e pega quem tem aquele id.
+innerHTML - é um atributo que representa o conteudo de um elemento.

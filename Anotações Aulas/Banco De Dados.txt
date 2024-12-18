@@ -1,0 +1,980 @@
+SGBD - Sistema Gerenciador de Banco de Dados: é um programa usado para gerenciar as informações, ele é composto de diversas partes cada parte tem a sua responsabilidade.
+
+ A mais utilizada é o banco de dados, é uma parte do SGBD que é responsável por armazenar as informações, teremos uma coleção de objetos distintos, cada um com sua responsabilidade mas agindo em conjunto para representar uma informação.
+
+SQL é a linguagem usada para se comunicar com banco de dados relacionais.
+teremos uma linguagem que é um conjunto de comandos e cada comando é responsável por manipular um abjeto no banco de dados, não é case sensitiva e é composta por diversas sublinguagens que cada uma é responsável por uma parte da manipulação do banco.
+
+CRUDE:
+Create - parte do insert - DDL
+Update
+Retrieve - aonde recupera informações. DQL
+Delete
+
+DDL - Data Definition Language linguagem de definição de dados
+DML - Data Manipulation Language.
+DQL -  Data Query Language(Linguagem de Consulta de Dados) - SELECT comando mais versátil.
+
+usamos primeiro o DDl depois usamos DML e DQL.
+
+  O Banco de dados é um container(caixinha) onde dentro dele vou estar criando os objetos para manipulação, estarei criando vários bancos, cada um com sua finalidade.
+banco de dados é um conjunto de objetos
+
+ Tabela é uma unidade básica de armazenamento dentro de um banco de dados, é possuída por um conjunto e linhas e colunas, cada coluna terá uma informação e cada linha será um "empregado" ou tipo.
+para criar uma coluna, o mínimo de informações é o nome da coluna e o tipo.
+
+
+COMANDOS:
+
+show databases; - mostra os bancos de dados que temos na maquina.
+"bancos com schema são do próprio mySQL"
+
+\ "comando/"; - executar comando externo dentro do mySQL
+\! cls - limpa
+
+char(tamanho) - é texto fixo.
+varchar(tamanho) - texto variável.
+decimal(inteiro,decimal)  - tem 2 parâmetros, (7,2) quantidade de casas totais e após o "," é q quantidade após a virgula. ou será aqui no exemplo 0000000,00.
+enum(parâmetros) - adicionar um enum precisamos passar os parâmetros de seleção ex: ('masculino','feminino','outros').
+
+use "banco"; - para definir o banco aonde todas as alterações serão feitas.
+
+show tables; - mostra as tabelas.
+
+describe "banco"; - descreve como é a estrutura do objeto pedido.
+
+lock tables "NomeTabela" write; - trava uma tabela e só eu posso escrever nela depois unlock tables;
+
+
+Cláusula where - filtrar linhas verdadeiras e falsas, e retorna as verdadeiras
+> maior
+< menor
+>= maior ou igual
+<= menor ou igual
+= igual
+!= <> diferente
+
+In() - compara a coluna com cada elemento da lista, se for verdadeiro pelo menos um valor, a coluna da lista será retornada.
+
+Like "inicio%" - aproximação, ótimo para fazer buscas.
+
+IS - usado como é
+ex:
+is not null;
+
+Between "valor" and "valor2";
+usado para selecionar entre 2 valores.
+
+AND - usado para "e"
+ex:
+carro and azul;
+
+NOT - usado para negar algum operador
+
+ORDER BY "nomeColuna" ASC/DSC - ordena as seleções da maneira que for pedido ascendente ou descendente.
+
+LIMIT "quantosPular", "quantosExibir": - usado para limitar quantos valores serão retornados.
+
+MAX() - usado para exibir o maior valor, precisa o ORDER BY;
+
+MIN(): - Usado para selecionar o menor valor, precisa de ordenação.
+
+
+
+
+
+
+   DDL: serve para criar editar e deletar objetos.
+
+create - para poder criar qualquer objeto:
+create database "nome"; - cria um banco de dados com o "nome"
+
+create table [esquema.] "nomeTabela" ("nome da coluna" tipo de dados da coluna[quantidade]); dentro de [] opcional, () obrigatório, colunas são separadas por "," cada coluna tem tipo e nome da coluna - cria uma tabela com linhas de informações.
+
+ex: create table departamento (nome_departamento varchar(30));
+
+SEMPRE QUE FOR FAZER ALTERAÇÂO PRIMEIRO SE DA O COMANDO: alter table
+alter table "nomeTabela" comandos de alteração - para manipular uma tabela já existente.
+posso usar o after "nomedaColuna" para criar uma coluna após tal coluna.
+
+ALTER TABLE `empresa`.`departamento` 
+CHANGE COLUMN `nome_departamento` `nome_departamento` VARCHAR(30) NOT NULL ;
+;
+
+renome - para renomear a tabela.
+
+add tipo "nome" 
+add column (); - adiciona uma coluna
+
+change "tipo" "nome" tipo(tamanho ou parâmetro); - 
+change column "nomeColuna" tipo(tamanho ou parâmetro); - altera a coluna
+
+drop "tipo" "nomeObjeto"; - remove linhas e estrutura do objeto.
+ex: drop column "nomeColuna" ; - joga fora a coluna
+
+truncate - remove linhas mas mantem estrutura.
+
+RESTRIÇÔES:
+sao regras que podem ser aplicadas na tabela, ou coluna.
+
+notnull(NN): é aplicado a uma coluna, valores da coluna não poderão ser nulos, coloca-se notnull depois do código de criação.
+nulo é diferente de 0(0 é valor).
+
+uniquekey(UQ): valor único e não pode se repetir(pode ser nulo).
+pode ser aplicado em uma coluna, ou em nível de tabela em diversas colunas(2 ou mais, e a combinação não poderá se repetir!).
+
+ALTER TABLE `empresa`.`departamento`
+ADD UNIQUE INDEX `nome_departamento_UNIQUE` (`nome_departamento` ASC); - caso queira usar mais de uma coluna, seria só separar por virgula ",".
+;
+
+
+primarykey(PK) = garante que a coluna sempre vai existir e o valor nunca se repetirá(aplica notnull e uniquekey ao mesmo tempo), utilizada como identificador único para acessar alguma linha da tabela.
+ótimo para CPF. TODA TABELA TERÀ SUA PK PARA IDENTIFICAR ALGUMA LINHA.
+
+caso eu não queira usar a própria coluna como primarykey eu posso criar outra coluna como sendo id e marcar como chave primaria.
+A primarykey pode ser:
+simples: apenas uma coluna para compor
+composta: com mais de uma coluna para compor ela
+
+ALTER TABLE `empresa`.`localidade`
+ADD PRIMARY KEY (`id_localidade`);
+;
+
+
+autoincrement(AI) - aquela coluna será auto incrementada, maioria das vezes será usada só para chave primaria.
+criando um id para o empregado com o autoincrement:
+
+ALTER TABLE `empresa`.`empregado` 
+ADD COLUMN `id_empregado` INT NOT NULL AUTO_INCREMENT AFTER `genero_empregado`,
+ADD PRIMARY KEY (`id_empregado`);
+ALTER TABLE `empresa`.`empregado` ALTER INDEX `cpf_empregado_UNIQUE` VISIBLE;
+
+
+foreignkey() - é uma coluna com um valor apontando para outra coluna em outra tabela, e esse valor será a chave primaria, usa se para vincular uma coluna em uma tabela com outra coluna em outra tabela, e a outra deve ser chave primaria, que deve existir, é usada para ligar as informações, no cmd vai aparecer como "MUL" o tipo da chave.
+Uma boa pratica, nome da coluna sempre é o mesmo nome da chave primaria.
+
+Primeiro cria-se uma coluna para vincular, sendo notnull, com o mesmo nome da onde quero vincular, depois crio a chave estrangeira dando o nome, tabela que estou e qual a chave, e a tabela a qual quero vincular com a coluna que será apontado.
+
+criando um vinculo entre departamento e localidade:
+
+ALTER TABLE `empresa`.`departamento` 
+ADD INDEX `fk_departamento_localidade_idx` (`id_departamento` ASC) VISIBLE;
+;
+ALTER TABLE `empresa`.`departamento` 
+ADD CONSTRAINT `fk_departamento_localidade`
+  FOREIGN KEY (`id_departamento`)
+  REFERENCES `empresa`.`localidade` (`id_localidade`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+eu posso selecionar os casos de OnUpdate e OnDelete a chave como:
+
+RESTRICT/NO ACTION: não deixa deletar ou editar se tiver alguém apontando para ela.
+
+CASCADE: Vai pegar a operação e discernir em cascata, ou seja tudo que apontar para a localidade será modificado junto.
+
+SET NULL: para funcionar, a coluna da chave estrangeira precisa permitir valores nulos, tornará nulo.
+
+e tudo depende das Regras De Negocio.
+
+
+Modelagem de dados.
+é uma técnica utilizada para modelar dados ou seja trazer as informações do sistema para a camada de dados.
+
+Artefatos:
+Mer: Modelo Entidade de Relacionamento: conjunto de entidades e a forma que elas se relacionam.
+teremos vários pontos equivalentes e alguns pontos nãos serão equivalentes, não consegue fazer 1 pra 1 por completo
+
+
+ __________________________________
+/
+
+No MER temos três níveis distintos de complexidade:
+
+Conceitual: que é o mais abstrato possível, aonde tenho duas entidades e o relacionamento entre elas, não sei o tipo de vinculo nem a cardinalidade, nem tipo nem restrições.
+
+Lógico: evoluído da abstração, já sei alguns atributos que tenho o tipo de relacionamento entre as entidades, mas ainda não forma o banco final, o qual será utilizado.
+
+Físico: é o banco final que terei, e usarei no dia a dia, aonde terei as entidades, relacionamentos mapeados, colunas, tipos de dados e restrições.
+
+\__________________________________
+
+MER
+Relações:
+
+ 1 : 1 (um pra um) ||-----||  linha com 2 tracinhos cruzados nas pontas, utiliza-se a chave primaria compartilhada: teremos uma chave primaria compartilhada entre as duas entidades, cada vez que inserirmos um (linha na tabela)empregado, inserimos o (linha na outra tabela)contato vinculado a ele(mesma chave primaria), e esse contato não poderá ser vinculado a outro empregado.
+
+ 1 : N (um pra N)  ||-----|<- linha com 2 tracinhos no departamento "1" e traço com flecha no lado do empregado "N", modela-se através de chave estrangeira ForeignKey "FK", A chave FK é criada no lado "N"
+
+ N : N (N para N) ->|-----|<- linha com traço e flecha ambos os lados, modela-se criando uma terceira tabela "Tabela Intermediário" com o nome "PrimeiraEntidade"_"Relacionamento"_"SegundaEntidade" e usa-se 2 relações de "1" para "N" com a Tabela Intermediária, aonde teremos 2 FKs, um id para cada lado, apontando "N" TabelaIntermediária para "1" Entidade, não podemos ter a mesma entidade vinculado com a mesma SegundaEntidade da mesma forma/quantidade 2 vezes.
+teremos uma chave primaria composta, pois a chave primaria vai ficar na tabela intermediaria apontando para as foreign key das duas.
+
+
+Normalização de Dados: é uma técnica utilizada para evitar redundância nos meus dados, teremos um modelo, ai normalizamos ele e se tornara normalizado, temos um banco não normalizado e a cada regra que se aplica, teremos uma nova forma do meu modelo, e ao final terei o modelo final aplica-se as regras 1, 2, 3, ai aplica-se outras formas, depois volta-se e aplica-se a 4, e 5, porem a partir do momento que for aplicado 1, 2 e 3, já é considerado um banco normalizado.
+
+Formas Normais de Shen:
+
+1.Não ter atributo composto, temos um cliente, então teremos a coluna endereço, deveremos decompor ela em varias colunas, por exemplo: cep, estado, cidade, bairro, rua, numero.
+
+2. Atributo realmente pertence a entidade ?
+exemplo:
+O ID do produto é algo inerente ao produto ?
+sim, cada produto tem apenas um ID.
+
+A categoria é algo inerente ao produto ?
+a categoria existira no produto, porem precisaremos de uma nova tabela para aquela categoria!
+
+A quantidade é do produto ?
+Tem ligação, mas é referente ao estoque, então a quantidade fica no estoque.
+
+3.Gira em torno das referencias
+
+
+
+   DML:
+
+Insert:
+Usado para adicionar novas linhas a uma tabela.
+ex:
+insert into "nomeTabela" ("coluna") values ("valor") - para inserir um valor em uma coluna especifica, caso queira inserir em todas não informamos a coluna.
+quando o valor for: data, enum e texto, deve-se colocar entre "" os valores.
+
+insert into departamento (nome_departamento, id_localidade) values ("Vendas", 1);
+
+temos as funções:
+now() - ela devolve a data e momento de hoje.
+curdate() - passa a data sem o tempo(hora, minuto, segundo).
+
+select concat("nomeColuna") "nomeColuna1" "nomeColuna1" from "nomeTabela"; - para selecionar concatenado.
+
+Select * from "nomeTabela"; - recupera do banco tudo "*" que tenho salvo na tabela.
+
+Update - usado para atualizar valores.
+update "nomeTabela" set "nomeColuna" = "valor"  where "condição";
+Ex:
+update departamento set id_localidade = 2 where id_departamento = 2;
+
+Delete - para deletar uma linha ou uma coluna, ou tudo que bater com a condição.
+delete from "nomeTabela" where "condição";
+
+
+
+   DQL: Linguagem de consulta de dados, serve para recuperar dados do banco.
+
+ordem de uso dos códigos: 
+from - lista-se tudo que tem na tabela
+select - filtra parte da tabela
+where - para filtrar algumas linhas.
+order by - para ordenar os resultados.
+
+select * from "nomeTabela";
+
+projeção é quando retorno o subconjunto das colunas que eu quero no banco:
+exemplo do uso:
+
+nome das localidades que eu tenho no banco
+select nome_localidade from localidade;
+
+nome e sobrenome dos empregados:
+select nome_empregado, sobrenome_empregado from empregado;
+
+nome sobrenome e data de nascimento dos empregados:
+select nome_empregado, sobrenome_empregado, data_nascimento_empregado from empregado;
+
+selecionando com apelido
+select nome_empregado as Nome, sobrenome_empregado as "Sobrenome do empregado" from empregado;
+
+posso selecionar colunas, valores, funções;
+
+
+NOW();
+CURDATE();
+seleciona o ano atual
+select year(curdate()) as "Ano Atual";
+
+Seleciona o nome e o sobrenome do empregado e dado o apelido "Nome Completo"
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo",
+data_contratacao_empregado as "Data de Contratação" from empregado;
+
+Seleciona o nome e sobrenome do empregado, formatando como "Nome Completo:" o gênero e o id do departamento que ele trabalha
+select concat(nome_empregado, sobrenome_empregado) as "Nome Completo", genero_empregado as Gênero, id_departamento as "Departamento:" from empregado;
+
+Seleciona o nome completo e calculado a idade
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo", (year(curdate())- year(data_nascimento_empregado)) as "Idade" from empregado;
+
+
+WHERE:
+Seleciona o nome completo dos empregados que foram contratados no ano anterior
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo" from empregado where year(data_contratacao_empregado) = year(curdate()) - 1;
+
+Seleciona o nome completo dos funcionários que ganham mais de 5 mil;
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo" from empregado where salario_empregado >= 5000;
+
+Seleciona o nome completo e salario dos funcionários que trabalham a mais de 8 anos na empresa
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo", salario_empregado as Salario from empregado where  year(curdate()) - year(data_contratacao_empregado) >= 8;
+
+select genero_empregado, salario_empregado from empregado where id_departamento <>1;
+
+
+IN(): compara se o valor esta na lista do in.
+
+Seleciona nome completo e salario dos empregados que trabalham no departamento 1 ou 2
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo", salario_empregado as Salario, id_departamento as Departamento from empregado where id_departamento in(1,3);
+
+
+Seleciona o salario e id do departamento dos empregados que ganham 2000 ou 2750
+select salario_empregado as Salario, id_departamento as departamento from empregado where salario_empregado in (2000,2750);
+
+
+LIKE: para consultar, podendo ser comparação total ou parcial.
+
+Seleciona o nome completo de todos os empregados cujo sobrenome começa com "S"
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo" from empregado where sobrenome_empregado like "s%";
+
+
+Seleciona o nome dos empregados cujo nome termina com "S"
+select nome_empregado as "Nome" from empregado where nome_empregado like "%s";
+
+
+Seleciona empregados cujo nome contenha "U"
+select nome_empregado, sobrenome_empregado as "Nome Completo" from empregado where nome_empregado like "%u%";
+
+
+Seleciona empregados cujo terceira letra do nome é "I"
+select nome_empregado, sobrenome_empregado as "Nome Completo" from empregado where nome_empregado like "___i%";
+
+
+Seleciona empregados cujo penúltima letra do sobrenome é "Z"
+select nome_empregado, sobrenome_empregado as "Nome Completo" from empregado where sobrenome_empregado like "%z_";
+
+
+IS NULL/ IS NOT NULL: é nulo, ou não é nulo, mas posso usar para outros valores.
+
+select salario_empregado from empregado where id_departamento is not null;
+
+select nome_empregado, comissao_empregado from empregado where comissao_empregado is not null;
+
+select nome_empregado, salario_empregado from empregado where id_gerente is null;
+
+
+BETWEEN: compara se esta entre os dois valores, menor primeiro.
+
+select nome_empregado, salario_empregado from empregado where salario_empregado between 2000 and 5000;
+
+Seleciona o nome e salario de empregados que trabalham de 5 a 10 anos na empresa
+select nome_empregado, salario_empregado from empregado where year(curdate()) - year(data_contratacao_empregado) Between 5 and 10;
+
+salario das mulheres do departamento 3
+
+select salario_empregado from empregado where genero_empregado = "feminino" and id_departamento = 3;
+
+Seleciona nome e salario das mulheres do departamento 1 ou 4 e ganham mais que 3000
+select nome_empregado, salario_empregado from empregado where genero_empregado = "feminino" and id_departamento in(1,4) and salario_empregado > 3000;
+
+select nome_empregado from empregado where nome_empregado <> "maria";
+
+Seleciona o nome dos empregados que não trabalham no departamento um e 3
+select nome_empregado from empregado where id_departamento not in (1,3);
+
+
+ORDER BY: ordena os valores com algum parâmetro(ASC/DESC).
+
+select nome_empregado, salario_empregado from empregado order by salario empregado asc;
+
+Seleciona as mulheres do departamento 1, com mais de 18 anos ordenadas pela idade;
+select nome_empregado, salario_empregado from empregado where genero_empregado = "feminino" and id_departamento = 1 and (year(curdate()) - year(data_nascimento_empregado)) > 18 order by data_nascimento_empregado desc;
+
+
+
+
+   Agrupamento de dados:
+
+FUNÇÔES EM GRUPO: sao funções que vão operar em um conjunto de valores.
+
+a execução será feita na sequencia:
+from Where group by having select.
+
+
+LIMIT: - usado para limitar quantos valores serão retornados.
+se tivermos 2 parâmetros o primeiro será o offset, ou seja o quanto será pulado, porque já foi exibido.
+
+seleciona o salario do empregado, ordenado descentemente com limite de 1 por pagina, sempre pulando oque já foi visto.
+select salario_empregado from empregado order by salario_empregado desc limit1,1;
+
+
+MAX(): - Usado para selecionar o maior valor, precisa de ordenação.
+
+select max(salario_empregado) from empregado where id_departamento = 2;
+
+Seleciona o nome, e o salario do empregado com o maior salario que foi contratados nos últimos 5 anos.
+select nome_empregado, max(salario_empregado) from empregado where year(curdate()) - year(data_contratacao_empregado) <= 5;
+
+Seleciona o maior salario das mulheres que trabalham no departamento 1 ou 3, e tem entre 18 e 25 anos.
+select max(salario_empregado) from empregado where genero_empregado = "feminino" and id_departamento in(1,3) and (year(curdate()) - year(data_contratacao_empregado)) between 18 and 25;
+
+
+MIN(): - Usado para selecionar o menor valor, precisa de ordenação.
+
+select min(comissao_empregado) from empregado;
+
+Seleciona o menor salario dos empregados que não ganham comissão.
+select min(salario_empregado) from empregado where comissao_empregado is null;
+
+SUM(): - seleciona o somatório
+
+select sum(salario_empregado) from empregado;
+
+tempo total de trabalho de todos os empregados que ganham entre 3000 e 10000.
+select sum((year(curdate()) - year(data_contratacao_empregado))) as "Tempo de Firma anos:" from empregado where salario_empregado between 3000 and 10000;
+
+
+AVG(): - seleciona a media.
+
+select avg(salario_empregado) from empregado;
+
+Seleciona a media dos salários das empregadas femininas que tem 5 ou menos anos de firma.
+select avg(salario_empregado) from empregado where genero_empregado = "FEMININO" and (year(curdate()) - year(data_contratacao_empregado)) <= 5;
+
+
+Count: - conta a quantidade do que for pedido.
+
+select count(*) from empregado where genero_empregado = "feminino";
+
+Seleciona quantas mulheres nao sao gerente e ganham mais que 5000.
+select count(*) from empregado where id_gerente is not null and salario_empregado > 5000;
+
+
+DISTINCT: - nao repete valores iguais.
+
+select count(distinct sobrenome_empregado) from empregado;
+
+Criando Grupos de Dados
+
+GROUP BY: - vai dividir as linhas em grupo e executar as minhas funções em grupo.
+toda coluna que estiver no select precisa estar no group by caso tenha uma função de grupo, mas nem toda coluna no group by precisa estar no select.
+
+select id_departamento, max(salario_empregado) from empregado group by id_departamento;
+
+Seleciona o gênero e a media de salarios dos empregados agrupados por gênero.
+select genero_empregado, avg(salario_empregado) from empregado group by genero_empregado;
+
+Seleciona a idade e média de salario dos empregados agrupados por idade em ordem crescente.
+select year(curdate()) - year(data_nascimento_empregado) as "Idade:", avg(salario_empregado) as "Salário:" from empregado group by year(curdate()) - year(data_nascimento_empregado) order by year(curdate()) - year(data_nascimento_empregado);
+
+
+Seleciona o id do departamento, gênero e media de salario dos empregados que tem até 10 anos de firma agrupados por id do departamento e genero.
+select id_departamento as "ID do Departamento:", genero_empregado as "Gênero:", avg(salario_empregado) as "Salário:" from empregado where (year(curdate()) - year(data_contratacao_empregado)) <= 10 group by id_departamento,genero_empregado;
+
+
+HAVING: - filtra os grupos por meio de um parâmetro.
+
+Seleciona os departamentos cujo o departamento a media salarial é maior que 3000
+select id_departamento, avg(salario_empregado) from empregado group by id_departamento having avg(salario_empregado) > 3000;
+
+
+Seleciona o departamento e a media salarial dos departamentos que tem mais do que 2 mulheres.
+select id_departamento, avg(salario_empregado) from empregado where genero_empregado = "feminino" group by id_departamento having count(*) > 2;
+
+
+
+   SubConsultas:
+teremos uma consulta, e compararemos o resultado com outra consulta e para cada tipo de retorno usaremos um tipo diferente de operador.
+
+temos três tipos de subconsultas:
+
+que retornam uma coluna e um valor único, usaremos operadores relacionais(<, >, =, <>,...)
+
+que retornam uma coluna e vários valores(IN, ANY, ALL).
+
+que retornam varias linhas e vários valores(IN).
+
+IN - igual a qualquer um dos valores como o "=".
+ANY - Compara o valor a cada valor retornado pela subconsulta, é usado com operador relacional.
+ALL - Compara o valor a todo valor retornado pela subconsulta, é usado com operador relacional.
+
+
+UM RETORNO:
+Seleciona nome e salario dos empregados que ganham mais do que a media salarial do departamento 2
+select nome_empregado, salario_empregado from empregado where salario_empregado > (select avg(salario_empregado) from empregado where id_departamento = 2);
+
+Seleciona o nome completo e salário da pessoa que tem o maior salário
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo:", salario_empregado as "Salário:" from empregado where salario_empregado = (select max(salario_empregado) from empregado);
+
+
+MAIS DE UM RETORNO:
+Seleciona os empregados que tem a idade de qualquer empregado do departamento 2:
+select concat(nome_empregado, " ", sobrenome_empregado) as "Nome Completo" from empregado where year(curdate()) - year(data_nascimento_empregado) in(select year(curdate()) - year(data_nascimento_empregado) from empregado where id_departamento = 2);
+
+
+Seleciona o departamento e a media salarial dos departamentos que ganham mais do que a media salarial da empresa
+select id_departamento as "Departamento:", avg(salario_empregado) as "Média Salarial:" from empregado group by id_departamento having avg(salario_empregado) > (select avg(salario_empregado) from empregado); 
+
+
+Seleciona o departamento a media salarial e a quantidade de mulheres, dos departamentos que tem 2 ou mais mulheres.
+select id_departamento, avg(salario_empregado), count(genero_empregado = "feminino") from empregado group by id_departamento having id_departamento in(select id_departamento from empregado where genero_empregado = "feminino" group by id_departamento having count(genero_empregado = "feminino")>=2);
+
+
+quais os empregados foram contratados entre 2015 e 2020, e tem idade maior do que a media de idade do departamento 2 ou 3.
+
+select nome_empregado from empregado where year(data_contratacao_empregado) between 2015 and 2020 and year(curdate()) - year(data_nascimento_empregado) >  all(select avg(year(curdate()) - year(data_nascimento_empregado)) from empregado where id_departamento in(2,3));
+
+
+Junção é oque usamos para recuperar informações do banco e trazendo ela estando correlacionada com oque ela era usada, por exemplo busco um cliente com os pedidos dele
+
+   Cross Join, ele retorna o produto cartesiano de valores(ele seleciona cada valor com cada valor da segunda tabela):
+select nome_departamento, nome_localidade from departamento cross join localidade;
+
+
+	JOIN "Condição de junção" - geralmente a união é feita pela chave estrangeira FK, é usado para juntar conjuntos, por exemplo juntar o nome do empregado com o nome do departamento>
+
+	Inner Join - combina registros de duas tabelas com base em uma condição de igualdade entre as colunas relacionadas. caso nao colocar nada no join, ele já assume o inner.
+é uma boa pratica das apelido para as tabelas no join
+
+Seleciona o nome do departamento e da localidade quando 
+select d.nome_departamento, l.nome_localidade from localidade l inner join departamento d on d.id_localidade = l.id_localidade;
+
+select d.nome_departamento, l.nome_localidade from localidade l inner join departamento d using(id_localidade);
+só posso usar o using() quando o join é pela chave estrangeira FK
+
+
+Seleciona o nome completo, salario e o nome do departamento de todos os empregados:
+select concat(e.nome_empregado," ", e.sobrenome_empregado) as "Nome Completo", e.salario_empregado as "Salário:", d.nome_departamento as "Departamento:" from empregado e inner join departamento d using(id_departamento);
+
+
+	LEFT JOIN - Pega tudo que tem na tabela "A" ou que esta nas duas e tirar só oque esta na tabela "B":
+cliente pedido, faço o inner e só retorno os clientes que fizeram pedido, porque os que nao fizeram nao estão vinculados a tabelas da direita(pedido)
+
+	RIGHT JOIN - mesma coisa só que ao contrario.
+
+Seleciona a localidade com seus departamentos.
+select l.nome_localidade, d.nome_departamento from localidade l left join departamento d on d.id_localidade = l.id_localidade;
+ 
+
+Seleciona o nome do departamento e a quantidade de empregados que trabalham nele.
+select d.nome_departamento as "Departamento:", count(e.id_empregado) as "Quantidade Empregados:" from departamento d left join empregado e on d.id_departamento = e.id_departamento group by d.id_departamento;
+
+
+Seleciona a idade, o nome e o nome da cidade em que trabalha a pessoa que tem o maior salário da empresa.
+select year(curdate()) - year(e.data_nascimento_empregado) as "Idade:", e.nome_empregado as "Nome:", l.nome_localidade as "Cidade:" from empregado e inner join departamento d on d.id_departamento = e.id_departamento     
+inner join localidade l on l.id_localidade = d.id_localidade where e.salario_empregado = (select max(salario_empregado) from empregado);
+
+
+Seleciona o nome do departamento, a localidade que ele fica e a media salarial dele.
+select  concat(d.id_departamento ," ",d.nome_departamento) as "Departamento:", l.nome_localidade as "Localidade:", avg(e.salario_empregado) as "Média Salarial:" from departamento d inner join empregado e on d.id_departamento = e.id_departamento inner join localidade l on l.id_localidade = d.id_localidade group by d.id_departamento;
+
+select d.nome_departamento, l.nome_localidade, avg(e.salario_empregado) from empregado e inner join departamento d using (id_departamento) inner join localidade l using (id_localidade) group by id_departamento;
+
+
+	SELF JOIN - usa-se para alinhar um dado com a propria tabela, incluindo nulo.
+
+Seleciona o nome do empregado e o seu respectivo gerente
+select e.nome_empregado, g.nome_empregado  from empregado e left join empregado g on e.id_gerente = g.id_empregado; 
+
+view é uma tabela que teoricamente retorna um select nomeado.
+
+
+CTE e CTE recursivo comum table expression
+
+nome de todas as localidades e a media salarial da localidade
+
+select l.nome_localidade, avg(e.salario_empregado) from empregado inner join departamento d using(id_departamento) inner join localidade l using(id_localidade) group by id_localidade; 
+
+Front-End 
+
+	como se conectar ao SGBD
+
+temos 3 partes:
+
+Código em java usa o
+JDBC - java database connectivity é uma extensão do java para se comunicar com o banco sendo um conjunto de classes abstratas que precisa ser implementado, geralmente na forma de um driver.
+Driver - é um conector do server para uma linguagem especifica através do JDBC, também é biblioteca implementada pelo usuário, para se comunicar com o server.
+Server mySQL
+
+ferramenta Maven - é uma fermenta para gerenciar o ciclo de vida do projeto, temos todas as dependências em um repositório remoto.
+no nosso caso apenas usaremos para fazer o building do projeto e gerenciar as dependências.
+
+
+group id - organização a qual aquele projeto pertence
+começar com a URl da organização ao contrario "br.senac"
+
+
+artifact id - nome do projeto. "avisaai"
+
+1.0.0-beta1
+Major.Minor.Patch-Label
+
+Major - grande mudanças, novo tipo de usuário totalmente diferente
+Minor - coisas pequenas, telas novas, funções novas
+Patch - coisas minúsculas, pequenas correções, cor da tela, formato de algo.
+Label - maturidade do sistema (alfa,beta,gamma,release)
+
+Name - pode ser o Nome propriamente dito, nome comercial.
+
+
+o pom.xml é um arquivo que o maven utiliza para estruturar, e importar o projeto
+
+XML é uma linguagem de marcação para mandar uma informação de forma estruturada
+cada elemento é composto por < "nome da tag"> " Conteúdo" </"nome da tag">
+
+tudo do projeto estará dentro do "<project>  </project>"
+
+<dependencies>
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>8.0.31</version>
+</dependency>
+</dependencies>
+
+
+maven clean - vai limpar 
+maven install - instalar as dependências e junto com isso compilar o projeto, fazer o building.
+
+a camada de controle utilizara o DAO - Data Asses Object
+
+DAO é uma interface para manipular cada entidade que tenho, e teremos nele todos os métodos para manipular ela, o nome da classe fica como "entidadeDAO".
+
+Criaremos uma classe "NomeentidadeDAOImpl" que utilizará o DAO para inserir no banco de dados, nessa classe será implementado o DAO, dado corpo para os metodos e será feito a conexão com o banco.
+caso use mais de uma tecnologia "NomeEntidadeDAOSQLImpl"
+
+Para se conectar com um banco via JDBC:
+farei uma função static que vai passar a URL do banco, temos parâmetros no URL que representam parte da conexão
+("jdbc:mysql://localhost/cadastro?user=admin&password=password");
+por exemplo aqui conectamos com o banco.
+
+A classe Statement é usada para quando  o comando SQL é sempre imutável
+A classe PrepareStatement é usado para quando o comando SQL é mutável, passaremos parâmetros para o método.
+
+em todo implement teremos um try catch tentando a conexão e logo após um PrepareStatement
+
+execute query - executa a consulta no comando no banco e retorna um objeto do tipo result set.
+
+dentro do DAOImpl:
+
+criamos a conexão, consulta e resultao
+
+conexão = conectarBanco();
+consukta = conexão.createStatement();
+resultado = consulta.executeQuery("SELECT * FROM cliente");
+
+while(resultado.next()) {
+int id = resultado.getInt("id_cliente"):
+String nome = resultado.getString("nome_cliente");
+
+clientes.add(new Cliente(id,nome)); 
+
+private Connection 
+
+mapeamento objeto relacional é uma técnica utilizada para converter automaticamente objeto para a linha de uma tabela e quando recupero do banco a linha de uma tabela para o objeto, serve para qualquer linguagem orientada a objetos com objeto relacional.
+vai permitir que a gente automatize as operações de banco
+temos a biblioteca JPA - especificação de como deve ser feito o mapeamento, sem trazer nenhuma implementação
+
+matadados sao um conjunto de anotações em um arquivo para mapear a classe, por exemplo essa classe é uma tabela, chave primaria e por ai vai ...
+ 
+notação é uma forma especial de interface para etiquetar "Marcar" o código. "Isso aqui será uma chave estrangeira"
+
+banco jdbc JPA Hibernate
+Programas que Implementam o jpa
+Eclipse Link
+
+OpenJPA
+
+Usaremos O 
+Hibernate - Serve para ler as entidades nas etiquetas e vai gerando os comandos do banco de dados
+anotar a minha classe para ser usada pelo provedor do JPA para gerar minhas classes, e gerar o banco de dados.
+
+@Entity
+@Table(name = "contato")
+public class Contato implements Serializable {
+
+	private static final long serial Version = 1L/
+
+	@id
+	@column(name = "id_cliente")
+	private Long id;
+	
+	@Column(name = "telefone_contato", length = 20, nullable = false, unique = true)
+	private String telefone;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+
+	public Contato() {}
+	
+	public Contato(String telefone, String email) {
+		setTelefone(telefone);
+		setEmail(email);
+	}
+
+	public Contato(Long id, String telefone, String email) {
+		setId(id);
+		setTelefone(telefone);
+		setEmail(email);
+	}
+}
+
+@Table - Será uma tabela.
+@id - Será a chave primaria da tabela.
+@column - Será uma coluna.
+@OneToOne - um para um ou seja vincula as informações, fetch = FetchType.lazy se os atributos nao devem vir junto, o lazy é o padrão, nao pode ser usada para chave estrangeira.
+@MapsId - mapeia o id da tabela 
+@JoinColumn - qual a coluna que sera usada para fazer a junção.
+@GeneratedValue - é gerado automaticamente ou seja auto incremento.
+usando a (strategy = GenerationType.IDENTITY)
+@OneToMany - um para muitos 
+usa-se o mapped by pra falar com base no que fazer.
+
+@OneToMany(fetch = FetchType.LAZY, mapped by = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+private List<Pedido> pedidos = new ArrayList<Pedido>();
+orphanRemoval é para que tudo que foi feito apartir do cliente seja removido, caso seja removido.
+
+ALL - é em todos
+PERSIST - se eu salvar no banco o endereço é salvo juntom, se eu atualizar 
+MERGE - 
+@ManyToMany(fetch = fetchType.LAZY, cascade= { CascadeType.PERSIST, CascadeType.Merge})
+@JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_endereço"))
+private List<Endereço> 
+do cliente para o endereço usando a chave estrangeira id_cliente, usando o id_endereço
+
+
+@UniqueConstraint - colunas em conjunto nao podem se repetir
+UniqueConstraints (@UniqueConstraint()columnsNames = {{"logradouro_endereco", "numero_endereco"})
+
+
+Toda classe que vamos gerenciar através do Hibernate essa classe precisa implementar o serializable.
+o Hibernate vai gerenciar o circulo de vida dos objetos, estando trandiente persistente e assim por diante, ele precisa que todas as classes tenham um construtor vazio.
+
+exemplo:
+
+valores padrão são nullable = true e unique = false.
+
+@id
+@Column(name = "id_cliente")
+private String long id;
+
+@Column(name = "telefone_contato", length = 20, nullable = false, unique = true)
+private String telefone;
+
+@OneToOne(fetch = fetchType.LAZY)
+@MapsId
+@JoinColumn(name = "id_cliente")
+private Cliente cliente;
+
+public Contato() {}
+
+public Contato(String telefone) {
+	setTelefone(telefone);
+}
+
+public Contato(Long id, String telefone) {
+	setId();
+	setTelefone();	
+}
+
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "id_cliente")
+private Long id;
+
+generation pode ser "AUTO, IDENTITY, SEQUENCE ou TABLE"
+
+@Column(name = "nome_cliente", length = 25, nullable = false, unique = false)
+private String nome;
+
+@Column(name = "cpf_cliente", length = 14, nullable = false, unique = true)
+private String cpf;
+
+@OneToMant(fetch = FetchType.LAZY, mapperdBy = "cliente", cascade = Cascade = CascadeType.ALL, orphanRemoval = true)
+private List<Pedido> pedidos = new ArrayList<Pedido>();
+
+ALL - toda ação sera propagada para os pedidos.
+
+@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+@JoinTable(name = "cliente_endereco", JoinColumns = @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+private List<Endereco> enderecos = new ArrayList<Endereco>();
+
+inverseJoinColumns é usado no ManyToMany para especificar qual seria o inverso do caminho, no nosso caso indo de cliente para endereco e voltando para cliente.
+
+PERSIST - Inserir.
+MERGE - Atualizar.
+orphanRemoval - a qual entidade algo esta vinculado(entidade Pai), se nao tiver gerenciando, ele tambem nao gerenciara as entidades filhas
+
+quando nao precisamos que uma parte saiba do pai, basta nao completar o manyToOne completo.
+
+temos que usar equals tambem!
+
+@Entity
+@Table (name = "endereco", UniqueConstraints = {@UniqueConstraint(columNames = {"logradouro_endereco", "numero_endereco"})}
+public class Endereco implements Serializable {
+}
+@UniqueConstraint - serve para que em conjunto nao possa se repetir.
+
+java conversa com Hibernate, o hibernate recebe o objeto, gera os comandos sql e junto com o JDBC se comunica com o banco, baseado nas anotações ele sabe para qual tabela ira o objeto.
+
+o inverso sai do banco, em escrito, vai pro JDBC e enta o Hibernate converte em objeto.
+
+xml é uma linguagem de marcação para carregar informação de forma estruturada.
+
+dentro do pom.xml temos a dependência do mysql, e uma dependência para o Hibernate, teremos diversos artefatos, porem nos preocuparemos com as funcionalidades de persistência, teremos um arquivo xml com a configuração do banco "Hibernatecfg.xml" posso me conectar via persistence ou session, dentro desse arquivo teremos  as propriedades para configurar, cada uma terá uma tag genérica com atributo e o valor do atributo sendo a propriedade que estou configurando, o conteúdo da tag é o valor dessa propriedade.
+
+<property name = "hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+<property name = "hibernate.connection.driver_class">com.mysql.jdbc.driver</property>
+<property name = "gibernate.connection.url">jdbc:mysql://localhost:3306/vendar?createDatabaseIfNotExist=true</property>
+hbm2ddl.auto>update<
+hibernate.connection.username>admin< - login
+hibernate.connection.password>password< - senha
+show_sql>true< - mostra a String sql numa linha
+format_sql>true< - formata em partes menores
+Hibernate.current_session_context_class>org.hibernate.context.
+<mapping class = "exemplo.modelo.entidade.cliente.Cliente"/> - é um mapeamento para caso o Hibernate nao estar reconhecendo a entidade, então coloca-se o caminho.
+...mapeamento das outras entidades
+</session-factory>
+</hibernate-configuration>
+
+quando for se conectar provavelmente vai dar erro, e precisaremos mudar o time zone para sao paulo no url
+ip é a forma de identificar a maquina no mundo, e a porta é a forma de identificar a maquina que esta funcionando
+
+primeiro passo colocar dependência.
+segundo passo configurar.
+3 utilizar.
+
+dentro do contexto de persistência terá varias coleçoes com bags guardando conjunto de objetos, mediante o estado dele
+estados:
+transient - algo em memoria.
+
+persistent - salva entidade em banco, e fica de olho no estado dela, qualquer mudança na classe, ele atualiza no banco.
+save()
+persist()
+update() - atualiza o valor
+merge() - atualiza o valor
+lock()
+saveOrUpdate()
+
+removed - deleta do banco mas o objeto continua em memoria.
+remove()
+delete()
+
+detached - continuara no banco, só nao estará mais persistente ou seja sendo atualizado
+detach() - para de gerenciar ele, mas continua em memoria.
+close()
+clear()
+evict()
+
+se um arquivo nao estiver persistente nao consigo atualizar nem deletar informações.
+
+
+dentro do DAO usaremos o Hibernate para fazer o crude(salvar,atualizardeletar)
+DAO é um padrao de projeto utilizado para implementar a camada de persistencia
+
+para cada método do DAO, conectaremos com o Hibernate através da sessão
+
+session factory - é uma fabrica de sessões, através dela configuraremos e ganharemos uma sessão
+
+dentro do dao:
+private SessionFactory conectarBanco(){
+
+Configuratio configuração = new Configuration();
+
+se caso o Hibernate nao encontrar a classe com o outro:
+configuração.addAnnotatedClass(exemplo.modelo.entidade.cliente.Cliente.class);
+
+configuração.configure("Hibernate.cfg.xml");
+
+precisaremos criar um serviço, que é um processo que esta "rodando por baixo do panos".
+ServiceResgistry serviço = new StandardServiceRegistryBuilder().applySettings(configuração.getProperties()).build(); - registra um serviço, pega as propriedades do .xml e da um build criando a conexão com o banco.
+SessionFactory fabricaSessao = configuração.buildSessionFactory(servico); - cria uma sessão usando a configuração da fabrica criada.
+
+return fabricaSessao; - retorna a fabrica de sessoes com o banco.
+
+depois nos outros metodos do DAOImpl:
+
+Session sessão = null;
+
+e então dentro de um try catch faremos as mudanças
+ai usa-se o método .openSession(); para realmente se conectar
+e então .beginTransaction(); - transforma em transação, seguindo 4 princípios importantes ACID Atomic(toda transação faz todos os comandos, se algum der errado ela nao faz nenhum) Consistent (quando fazer uma transação, ela nao pode violar restrições do banco) Independet(uma nao pode impactar no que a outra vai fazer, ou seja, nao se comunicam, e nao pode ter acesso paralelo) Durability(uma vez que uma transação for efetuada, ela permanecerá dessa forma)
+.save(cliente); - salva no banco
+
+.getTransaction().commit(); - pega a transação e comita ela.
+
+faremos então o cathc om ca exceção, se nao deu certo, da .getTransaction().rollback();
+if(sessão.gettransaction() !=null) {
+session.getTransaction().rollback();
+}
+e por fim fecha a sessão com finally
+
+if(sessão =! null) {
+sessão.close;
+}
+
+criteria é um biblioteca do JPA que trabalha de forma tipada(sei o tipo retornado), sao independentes do SGBD do banco, e sao resolvidas de forma programática, ou seja vou programando e criando a minha consulta, tendo varias classes e metodos para representar essa consulta, mas uma grande desvantagem é ser muito extensa, porem mais expressiva que JPQL.
+
+trabalhando com criteria, estarei construindo minha consulta passo a passo, e terei um construtor o criteria builder, que vai criar a consulta, sendo a minha consulta sendo armazenada dentro do objeto do tipo CriteriaQuery<tipo do objeto>.
+
+SELECT * FROM cliente
+
+CriteriaQuery<Cliente> criteria = construtor.createQuery(Cliente.class);
+Root<Cliente> raizCliente = criteria.from(Cliente.class);
+
+criteria.select(raizCliente);
+
+clientes = sessão.createQuery(criteria).getResultList();
+
+sessão.getTransition().commit();
+
+o root ou raiz vai estar guardando o ponto de partida da consulta, nesse caso é a partir do resultado de um from lá do cliente.
+
+
+SELECT * FROM contato INNER JOIN cliente USING (id_cliente) WHERE cpf_cliente = "123.456.789-10";
+
+CriteriaQuery<Contato> criteria = construtor.createQuery(Contato.class);
+Root<Contato> raizContato = criteria.from(Contato.class;)
+
+join<Contato, Cliente> juncaoCliente = raizContato.join(Contato_.cliente);
+
+ParameterExpression<String> cpfCliente = construtor.parameter(String.class);
+criteria.where(constrturor.equal(juncaoCliente.get(Cliente_.CPF), cpfCLiente));
+
+contato = sessao.createQuery(criteria).setParameter(cpfCliente, cliente.getcpf()).getSingleResult();
+
+sessao.getTransaction().commit();
+
+ParameterExpression - representa o valor de um coluna ao qual estou comparando, ele guarda o valor do tipo, no nosso exemplo é string.
+primeiro é sempre a coluna e depois o valor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

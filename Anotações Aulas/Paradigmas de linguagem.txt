@@ -1,0 +1,261 @@
+Paradigmas de linguagem
+
+imperativas: oque vai ser feito não é o relevante, e sim como será feito.
+
+declarativas: o foco está no resultado desejado e não na especificação detalhada de como alcançá-lo.
+
+linguagens estruturadas possuem condicionais ,repetição, sub-rotinas.
+
+programação orientada ao objeto: temos objetos do mundo real se relacionando entre si para resolver um problema, o conceito de objeto que temos é a classe  <=====
+
+classe: é uma representação computacional de uma entidade de um domínio de conhecimento, representasse uma entidade computacionalmente através dos 2 tipos de membros da classe, temos:
+atributos: denota as características e qualidades que eu preciso estar elencando daquela entidade(aluno, matricula, data de nascimento, notas, turma, responsáveis).
+
+métodos: são as ações que a entidade pode realizar( o aluno pode consultar faltas, responder chamada, entregar tarefa).
+
+objeto instancias concretas da classe, exemplo: alunos: Lucas, sobrenome: silva, idade: 20.
+
+variável de tipo referencia usa endereço de memoria, caso não tenha nada ela não armazena nada, "null", mas ela continua tendo o endereçamento de memoria para o lugar.
+
+encapsulamento serve para que nenhum atributo possa ser modificado de fora da classe.
+
+modificador de acesso é uma palavra reservada que vai definir qual a visibilidade daquele argumento implementado na classe, atributo ou método.
+
+publico: consegue se acessar de qualquer lugar.
+privado: consegue ser acessado dentro da classe a qual ele foi definido.
+protegido: só consegue ser visível dentro das classes/atributos que herdam ele
+pacote: se eu não definir um modificador de acesso, então se torna pacote, e só é visível dentro do pacote criado.
+
+métodos assessores são métodos responsáveis por acessar os valores, serão responsáveis por devolver o valor do atributo e modificar o valor do atributo:
+
+get: acessa os atributos e devolve o valor.
+set: vai atribuir o valor ao atributo.
+
+para cada atributo que quero acesso a meio esterno, eu terei que criar o método assessor dele.
+
+quando criamos variáveis temos 2 escopos o código sempre ira ir primeiramente pelo escopo mais próximo
+local
+global
+
+método construtor vai criar um objeto na memoria e retornar o endereço desse objeto que foi criado, o nome do método é o mesmo nome da classe. o próprio compilador já cria um método construtor vazio, podemos criar e adicionar parâmetros(int idade).
+pode se ter mais de um construtor, quantos precisar, porem nenhum do mesmo tipo.
+
+palavra reservada new: invoca o construtor, e alinha o objeto pronto para ser utilizado.
+
+atributos, construtores, métodos de acesso(getters e setters), métodos especiais(toString, equals, hashcode), e por fim métodos normais.
+
+quando as classes se relacionam entre si, elas tem algum nível de acoplamento, quando é baixo, elas não dependem ou dependem pouco uma da outra.
+
+agregação: embora  a parte faça parte do todo, existe independentemente do todo, é uma relação mais fraca doque composição.
+
+composição são um acoplamento maior, ambos temos a relação de pertencimento uma classe da outra, mas ela só existe em detrimento do todo, ou seja não existe separada.
+
+associação: uma classe usa a outra
+
+composição: a parte é totalmente dependente do todo, não existe sem o todo.
+implementação: Quando uma classe utiliza a palavra-chave implements, ela herda os métodos abstratos da interface e precisa fornecer implementações para esses métodos
+
+quando duas classes estão interligada, teremos relacionamentos, esses são baseados na semântica e no acoplamento.
+
+associação e uso agregação é uma relação de pertencimento
+e podem ser direção unidirecional ou bidirecional.
+
+cardinalidade ou multiplicidade
+
+toda constante se usa static final "int" "NOME" e o nome se usa caixa alta
+
+equals para comparar objetos. exemplo de encadeamento de métodos: alunos[i].getMatricula().equals(matricula)
+equalsIgnoreCase ignora se a letra é minúscula ou maiúscula.
+
+para aplicar herança precisamos achar um relacionamento entre 2 classes, aonde ambas pertencem a um caso, exemplo aluno e professor, ambos são pessoas, então criamos uma nova classe que vai representar esse conceito, e oque tem repetido em ambas sai delas e vai para a nova, e então elas vão estar herdando as informações, e então essa classe será a super classe, e a que estará herdando será subclasse.
+
+para fazer herança de classe, usa-se a palavra extends, exemplo Classe empregado extends Pessoa(classe empregado herda de pessoa, todos os atributos e métodos de pessoa estão sendo baixados e usados).
+
+o encapsulamento: protected é visível na classe que foi definido e nas classes que herdam ela.
+
+classe concreta é uma classe que a partir dela eu posso criar objeto, e não pode ter método abstrato.
+classe abstrata é uma classe que a partir dela nunca poderei criar objeto, e todos os construtores são protected.
+
+método concreto tem um corpo, sempre que ele pegar herança de um método abstrato, é necessário fazer uma sobrescrita de método.
+método abstrato é um método que tem uma assinatura mas não tem um corpo.
+e então ocorre-se a sobrescrita de método aonde você recebe o método e da um novo corpo para ele.
+
+a assinatura é composta pelo tipo de retorno nome e parâmetros(tipo e ordem). Exemplo: calcularIdade(int dataNascimento);
+sobrecarga de método é método com mesmo nome porem assinaturas distintas, serve para sinalizar a mesma coisa porem de formas diferentes, aonde temos um funcionalidade e posso fazer a mesma coisa de formas distintas
+
+
+[ ] classe
+<< >> - estereotipo, para falar do que se trata a caixa no diagrama de classes.
+________ linha reta ´uma associação bidirecional, se tiver uma setinha ____> é uni direcional.
+se for uma flecha com ----<> vazada é agregação , e preenchida é composição.
+setinha vazada ------|> - herança.
+e coloca-se uma palavra Exemplo: o empregado trabalha no departamento.
+
+0..* zero ou mais, até tanto.
+0*   significa zero ou mais, sem limite.
+* muitos
+
+nome da classe itálico(deitadinho) é abstrato e normal é concreto. <====
+
++ publico 
+- privado
+# protegido
+~ pacote
+
+ordem das classes: nome: Departamento <<entity>>, atributos: - nome: String; - empregados: Empregado[], métodos: + adicionarEmpregado(empregado: Empregado): boolean; + removerEmpregado (empregado: Empregado) : boolean.
+
+tipo de dado enumerado(enum): é um tipo de dado em que se tem todos os valores que ele pode assumir, listados no tipo enumerado.
+todo dado listado ali, é do tipo "nome do Enum"
+
+ser estático "static" é acessar o objeto através da classe e não do objeto
+
+ordinal retorna a posição do objeto.
+
+interface é um conjunto de métodos abstratos, ela só tem métodos e todos são abstratos *tem um sistema de interface que nem todos são abstratos.. mas não usaremos.
+
+cria-se uma classe quando se precisa de atributo e método.
+interface, usa-se quando não precisamos de atributo, apenas métodos.
+
+polimorfismo é mesmo método com vários corpos, atingido através das classes abstratas, métodos abstratos e sobrescrita de métodos. 
+
+quanto mais abstrato o código, melhor, sempre foca-se em fazer códigos, que não precise ser alterado sua base para futuras adições.
+
+Arquitetura de Sistema:
+
+arquitetura monolítica: todo o sistema fica num projeto só, mas fica separado por camadas, e cada camada tem sua responsabilidades, usaremos MVC: 
+vamos separar o sistema em camadas, cada camada em pacotes distintos. 
+
+modelo: Modelado das entidades do sistema e o acesso aos dados.
+
+visão: Camada responsável por apresentar as informações que tenho para o usuario, e colher do usuario as entradas. Entrada e saída de dados
+
+Controle: primeiro ele faz a comunicação entre as camadas, devolve a resposta para as camadas, é aonde é implementado as regras de negocio.
+
+Ctrol + Shift + O  ajusta os imports da classe.
+
+enumeração é o tipo de dado aonde vai ficar listado todos os valores que eu instituir(conjunto de constantes staticas, aonde o objeto vai ser uma enumeração)
+
+interface é um contrato composto por um conjunto de métodos abstratos, toda classe que for usar a interface, precisa dar corpo para os métodos, e ganha o tipo daquela classe.
+
+programação orientada ao objeto, principais: abstração e polimorfismo.
+tudo que não é tipo primitivo é objeto <=======
+
+TRATAMENTO DE EXCEÇÔES:
+quando acontece uma situação inesperada o sistema lança o método Throwable
+
+Throwable (Lançável) pode ser:
+ Erro: É uma situação em que o programa vai parar, e não tem oque fazer.
+
+ Exceção: É remediável, caso eu trate ela, o meu programa consegue contornar e continuar executando.
+ algumas exceções são checkadas, precisamos trabalhar a resposta do exceção para ajustar, e algumas são "não checkadas"()
+
+* Uma boa pratica, toda exceção criada, deve estender de uma "RuntimeException" por que não é checkado!
+
+EXEMPLO DE EXCEÇÃO:
+
+
+public void setNome(String nome) throws NomeInvalidoException {
+		
+	if(nome.isBlank() || nome.length() < 3)
+		throws NomeInvalidoException("O nome:" + nome + " é invalido!");
+			
+	this.nome = nome;
+	}
+
+com o throws ele lança a exceção para ser tratada em outro lugar.
+try: coloca-se o código que pode gerar exceção. e para cada exceção precisamos ter um catch.
+catch: vai capturar a exceção caso ocorra e da o tratamento devido.
+finally: sempre será executado, n o fluxo aonde ocorreu exceção, será executado o try, catch, pula todos os outros catch, finally, geralmente usado para fechar o insert e a conexão com o banco ou destruir / desalocar recursos.
+
+printStackTrace: imprime o traço da pilha, de chamada de métodos.
+stackTrace: é a pilha de chamada de métodos.
+
+armazenamento em arvore: ela contem um nó que é a raiz(nó sem ponto de partida(pai)), a partir disso terá outros nós apontando para um pai, cada nó tem um valor e o seu pai, temos também os níveis, nó raiz e nó folha(que não tem nenhum filho).
+
+arvore binaria: é uma arvore em que cada nó que não é folha tem exatamente 2 filhos, ou nenhum ou 2.
+
+arvore binaria de busca: é uma arvore aonde cada elemento já esta ordenado, conforme inserimos informações, ela já serão inseridas ordenadas. se ele for menor que o nó é inserido a esquerda, e se for maior ou igual é inserido a direita,
+
+<E> ==> generics, dentro do "< >" eu coloco o tipo.
+generics só aceita classe, não aceita tipo primitivo(int)
+
+converter tipo primitivo para rapper chama-se autoboxe(empacotando):
+int i = 10;
+integer i;
+umboxing é o contrario de autoboxe.
+tudo isso já é feito automaticamente.
+
+wrapper ==> empacota o conceito de tipo primitivo.
+
+interable ==> (interface)collection<E>:
+se tem ordem, permite informação repetida
+Queue: é uma fila aonde se ordena do primeiro ao ultimo.
+List: tem acesso aleatório, ou sequencial, internamente armazena como vetor.
+se não tem ordem, não permite informações duplicadas:
+Set
+
+int lastIndexOf(Object 0): retorna o ultimo objeto
+se nao tiver o objeto retornará -1,
+
+get(int index)
+set(int index, E element): coloca o elemento se nao tiver nada na posição
+add(int index, E element): sem o index, apenas coloca o elemento na ultima posição vazia do vetor , ou com index realoca todos os elementos do vetor a frente da posição pedida para colocar o elemento na posição pedida do vetor
+E remove(int index) remove o objeto, marca ele como nulo e retorna E(objeto)
+
+temos o contains: utiliza o método equals, mas esse equals esta sendo implementado pela classe object, que só compara endereço de memoria, precisamos sobrescrever o equals, para dizer como comparar os objetos
+para fazer preciso:
+ver se o outro objeto é null, se não existir retorna falso, se existe tenque ver se estão no mesmo endereço, se não estão, comparamos a classe, se for diferente, não se aplica ao mesmo objeto, se cheguei ate agora e não entrei em nenhum "if", para saber se são iguais tenho que comparar atributos, se todos são iguais retorna "true", senão "false"
+public boolean contais(Object o)
+
+Class ArrayList<E> ==> é uma implementação da interface lista, mas internamente possui um array de tamanho ajustável(ele recria um vetor, e passa todas as infos pro próximo, e o destrói), tem estrutura de acesso aleatório, totalmente armazenado dentro de um vetor.
+só pode estender de uma classe, mas pode implementar varias interfaces.
+
+LinkedArrayList nao é de acesso aleatório porque só se conhece a cabeça, e então pode-se ir para o próximo.
+
+temos lista ligada, aonde o da frente conhece o anterior.
+
+e temos lista circular, aonde o ultimo conhece o primeiro, e se for duplamente ligada ambos de conhecem, e ambos podem se acessar.
+
+public ArrayList(int initialCapacity)
+
+boolean equals(Object o): compara se dois objetos são iguais.
+o.equals(objeto)
+	return o == object;
+
+a partir de cada objeto, e vai comparar o parâmetro que passei
+
+.getClass: retorna a classe.
+
+coleção é um conjunto de elementos, e dentro dela esta a forma de fazer tal coisa.
+
+arraylist<>
+lista é um conjunto de elementos que tem ordem, e que permite argumentos repetidos, e é implementado por um vetor interno, aonde conforme for colocado mais informações, será criado num novo vetor, copiar tudo que já tinha no antigo e adicionar o novo elemento.
+
+qualquer classe em java é um objeto!
+
+generics: classe<> o tipo não esta definido, só vai ter tipo quando for usar.
+generics não funciona com tipo primitivo, só com classes, para isso existem classes wrapper que são classes empacotadoras, começa com letra maiúscula, exceto classe integer ou classe char.
+posse pegar um objeto integer e armazenar dentro de uma variavel primitiva int, chamado de unboxe, e o inverso é chamado de autoboxe.
+
+POO, coleções(não funcionara sem o equals)
+
+addall adiciona uma coleção a uma arraylist
+
+collections.sort("arraylist"); Ordena uma coleção des de que seja comparável(interface: comparable), posso ordenar apenas de uma forma, preciso criar uma classe:
+ public class Post implements Comparable<"tipo" Post> {
+	public int compareTo("tipo" Post post){
+		return0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
